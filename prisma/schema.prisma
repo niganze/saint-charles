@@ -8,7 +8,7 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(cuid())
+  id        Int      @id @default(autoincrement())
   email     String   @unique
   name      String
   password  String
@@ -17,7 +17,7 @@ model User {
 }
 
 model Blog {
-  id        String   @id @default(cuid())
+  id        Int      @id @default(autoincrement())
   title     String
   content   String   @db.Text
   published Boolean  @default(false)
@@ -27,7 +27,7 @@ model Blog {
 }
 
 model Testimony {
-  id        String   @id @default(cuid())
+  id        Int      @id @default(autoincrement())
   name      String
   content   String   @db.Text
   rating    Int      @default(5)

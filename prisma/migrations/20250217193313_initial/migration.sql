@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE `User` (
-    `id` VARCHAR(191) NOT NULL,
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `email` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
     `password` VARCHAR(191) NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE `User` (
 
 -- CreateTable
 CREATE TABLE `Blog` (
-    `id` VARCHAR(191) NOT NULL,
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `title` VARCHAR(191) NOT NULL,
     `content` TEXT NOT NULL,
     `published` BOOLEAN NOT NULL DEFAULT false,
@@ -26,7 +26,7 @@ CREATE TABLE `Blog` (
 
 -- CreateTable
 CREATE TABLE `Testimony` (
-    `id` VARCHAR(191) NOT NULL,
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(191) NOT NULL,
     `content` TEXT NOT NULL,
     `rating` INTEGER NOT NULL DEFAULT 5,
