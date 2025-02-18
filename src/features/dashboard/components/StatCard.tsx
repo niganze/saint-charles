@@ -1,27 +1,30 @@
 interface StatCardProps {
   title: string;
-  value: number | string;
+  value: React.ReactNode;
+  icon?: React.ReactNode;
   description?: string;
 }
 
-export const StatCard = ({ title, value, description }: StatCardProps) => {
+export const StatCard = ({
+  title,
+  value,
+  icon,
+  description,
+}: StatCardProps) => {
   return (
-    <div className="bg-white overflow-hidden shadow rounded-lg">
-      <div className="p-5">
-        <div className="flex items-center">
-          <div className="flex-1">
-            <dt className="text-sm font-medium text-gray-500 truncate">
-              {title}
-            </dt>
-            <dd className="mt-1 text-3xl font-semibold text-sc-black">
+    <div className="bg-white overflow-hidden rounded-xl border border-gray-100 transition-all duration-200 hover:shadow-md">
+      <div className="p-6">
+        <div className="flex items-center gap-4">
+          {icon && <div className="p-3 bg-gray-50 rounded-lg">{icon}</div>}
+          <div>
+            <dt className="text-sm font-medium text-gray-500">{title}</dt>
+            <dd className="mt-1 text-2xl font-semibold text-gray-900">
               {value}
             </dd>
           </div>
         </div>
         {description && (
-          <div className="mt-4">
-            <div className="text-sm text-gray-500">{description}</div>
-          </div>
+          <p className="mt-4 text-sm text-gray-500">{description}</p>
         )}
       </div>
     </div>

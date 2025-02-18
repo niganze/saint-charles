@@ -3,7 +3,7 @@
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import { QueryProvider } from "@/providers/QueryProvider";
-import { SessionProvider } from "next-auth/react";
+import { SessionProvider } from "@/providers/SessionProvider";
 
 export default function RootLayout({
   children,

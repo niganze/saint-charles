@@ -19,12 +19,6 @@ declare module "next-auth" {
 }
 
 export const authOptions: NextAuthOptions = {
-  pages: {
-    signIn: "/auth/signin",
-  },
-  session: {
-    strategy: "jwt",
-  },
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -33,14 +27,8 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) {
-          throw new Error("Missing credentials");
-        }
-
         const user = await prisma.user.findUnique({
-          where: {
-            email: credentials.email,
-          },
+          where: { email: credentials?.email },
         });
 
         if (!user) {
@@ -48,22 +36,23 @@ export const authOptions: NextAuthOptions = {
         }
 
         const isPasswordValid = await compare(
-          credentials.password,
+          credentials?.password || "",
           user.password
         );
-
         if (!isPasswordValid) {
           throw new Error("Invalid credentials");
         }
 
-        return {
-          id: user.id,
-          email: user.email,
-          name: user.name,
-        };
+        return { id: user.id, email: user.email, name: user.name };
       },
     }),
   ],
+  pages: {
+    signIn: "/auth/signin",
+  },
+  session: {
+    strategy: "jwt",
+  },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {

@@ -1,11 +1,14 @@
 "use client";
 
 import { Logo } from "@/components/ui/logo";
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { toast } from "react-hot-toast";
-import { Spinner } from "@/components/ui/spinner";
+import toast from "react-hot-toast";
+import { Mail, Lock } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import InputLabel from "@/components/ui/input-label";
+import { signInUser } from "@/features/auth/auth.api";
 
 export default function SignIn() {
   const router = useRouter();
@@ -17,10 +20,9 @@ export default function SignIn() {
     const formData = new FormData(e.currentTarget);
 
     try {
-      const res = await signIn("credentials", {
-        email: formData.get("email"),
-        password: formData.get("password"),
-        redirect: false,
+      const res = await signInUser({
+        email: formData.get("email") as string,
+        password: formData.get("password") as string,
       });
 
       if (res?.error) {
@@ -28,7 +30,7 @@ export default function SignIn() {
       }
 
       router.push("/admin");
-      toast.success("Signed in successfully");
+      toast.success("Welcome back!");
     } catch (error) {
       toast.error("Invalid credentials");
     } finally {
@@ -37,73 +39,55 @@ export default function SignIn() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="w-32 h-12 mx-auto relative">
           <Logo />
         </div>
-        <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-          Sign in to your account
+        <h2 className="mt-6 text-center text-2xl font-bold text-sc-black">
+          Welcome back
         </h2>
+        <p className="mt-2 text-center text-sm text-gray-600">
+          Sign in to your account to continue
+        </p>
       </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+      <div className="mt-8 mx-auto w-full max-w-[400px]">
+        <div className="bg-white py-20 px-12 shadow-xl shadow-gray-100/10 rounded-xl border border-gray-100">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Email address
-              </label>
+              <InputLabel htmlFor="email">Email address</InputLabel>
               <div className="mt-1">
-                <input
+                <Input
                   id="email"
                   name="email"
                   type="email"
-                  autoComplete="email"
+                  // autoComplete="email"
                   required
-                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-sc-red focus:ring-sc-red sm:text-sm"
+                  icon={<Mail className="h-5 w-5" />}
+                  placeholder="Enter your email"
                 />
               </div>
             </div>
 
             <div>
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Password
-              </label>
+              <InputLabel htmlFor="password">Password</InputLabel>
               <div className="mt-1">
-                <input
+                <Input
                   id="password"
                   name="password"
                   type="password"
-                  autoComplete="current-password"
+                  // autoComplete="current-password"
                   required
-                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-sc-red focus:ring-sc-red sm:text-sm"
+                  icon={<Lock className="h-5 w-5" />}
+                  placeholder="Enter your password"
                 />
               </div>
             </div>
 
-            <div>
-              <button
-                type="submit"
-                disabled={isLoading}
-                className="flex w-full justify-center rounded-md border border-transparent bg-sc-red py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-sc-black focus:outline-none focus:ring-2 focus:ring-sc-red focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isLoading ? (
-                  <Spinner
-                    size="sm"
-                    className="border-white border-t-transparent"
-                  />
-                ) : (
-                  "Sign in"
-                )}
-              </button>
-            </div>
+            <Button type="submit" isLoading={isLoading} className="w-full">
+              Sign in
+            </Button>
           </form>
         </div>
       </div>
