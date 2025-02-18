@@ -29,11 +29,7 @@ export default function ProfilePage() {
             </TabButton>
           </div>
         </div>
-        {activeTab === "profile" ? (
-          <ProfileTab session={session} />
-        ) : (
-          <PasswordTab />
-        )}
+        {activeTab === "profile" ? <ProfileTab /> : <PasswordTab />}
       </div>
     </div>
   );
