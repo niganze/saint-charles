@@ -12,10 +12,12 @@ export const StatCard = ({
   description,
 }: StatCardProps) => {
   return (
-    <div className="bg-white overflow-hidden rounded-xl border border-gray-100 transition-all duration-200 hover:shadow-md">
-      <div className="p-6">
-        <div className="flex items-center gap-4">
-          {icon && <div className="p-3 bg-gray-50 rounded-lg">{icon}</div>}
+    <div className="bg-white overflow-hidden rounded-xl transition-all duration-200 hover:shadow-md">
+      <div className="p-8">
+        <div className="flex gap-4">
+          <div>
+            {icon && <div className="p-3 bg-gray-50 rounded-lg">{icon}</div>}
+          </div>
           <div>
             <dt className="text-sm font-medium text-gray-500">{title}</dt>
             <dd className="mt-1 text-2xl font-semibold text-gray-900">

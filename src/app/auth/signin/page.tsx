@@ -1,42 +1,56 @@
 "use client";
 
 import { Logo } from "@/components/ui/logo";
-import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { Mail, Lock } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import InputLabel from "@/components/ui/input-label";
-import { signInUser } from "@/features/auth/auth.api";
+import { signInSchema } from "@/lib/validations/auth";
+import { useForm } from "react-hook-form";
+import { SignInInput } from "@/lib/validations/auth";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function SignIn() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/admin";
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsLoading(true);
-    const formData = new FormData(e.currentTarget);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignInInput>({
+    resolver: zodResolver(signInSchema),
+  });
 
+  const onSubmit = handleSubmit(async (data) => {
+    setIsLoading(true);
     try {
-      const res = await signInUser({
-        email: formData.get("email") as string,
-        password: formData.get("password") as string,
+      const res = await signIn("credentials", {
+        email: data.email,
+        password: data.password,
+        redirect: false,
       });
 
       if (res?.error) {
-        throw new Error(res.error);
+        toast.error("Invalid credentials");
+        return;
       }
 
-      router.push("/admin");
-      toast.success("Welcome back!");
+      toast.success("Signed in successfully");
+      router.push(callbackUrl);
+      router.refresh();
     } catch (error) {
-      toast.error("Invalid credentials");
+      toast.error("Something went wrong");
     } finally {
       setIsLoading(false);
     }
-  };
+  });
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -54,18 +68,18 @@ export default function SignIn() {
 
       <div className="mt-8 mx-auto w-full max-w-[400px]">
         <div className="bg-white py-20 px-12 shadow-xl shadow-gray-100/10 rounded-xl border border-gray-100">
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={onSubmit} className="space-y-6">
             <div>
               <InputLabel htmlFor="email">Email address</InputLabel>
               <div className="mt-1">
                 <Input
                   id="email"
-                  name="email"
                   type="email"
-                  // autoComplete="email"
-                  required
+                  autoComplete="email"
                   icon={<Mail className="h-5 w-5" />}
                   placeholder="Enter your email"
+                  {...register("email")}
+                  error={errors.email?.message}
                 />
               </div>
             </div>
@@ -75,18 +89,18 @@ export default function SignIn() {
               <div className="mt-1">
                 <Input
                   id="password"
-                  name="password"
                   type="password"
-                  // autoComplete="current-password"
-                  required
+                  autoComplete="current-password"
                   icon={<Lock className="h-5 w-5" />}
                   placeholder="Enter your password"
+                  {...register("password")}
+                  error={errors.password?.message}
                 />
               </div>
             </div>
 
-            <Button type="submit" isLoading={isLoading} className="w-full">
-              Sign in
+            <Button type="submit" disabled={isLoading} className="w-full">
+              {isLoading ? "Signing in..." : "Sign in"}
             </Button>
           </form>
         </div>

@@ -1,7 +1,9 @@
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { compare } from "bcrypt";
 import { prisma } from "./prisma";
+import { compare } from "bcrypt";
+import { PrismaAdapter } from "@auth/prisma-adapter";
+import { Adapter } from "next-auth/adapters";
 
 declare module "next-auth" {
   interface Session {
@@ -19,6 +21,13 @@ declare module "next-auth" {
 }
 
 export const authOptions: NextAuthOptions = {
+  adapter: PrismaAdapter(prisma) as Adapter,
+  pages: {
+    signIn: "/auth/signin",
+  },
+  session: {
+    strategy: "jwt",
+  },
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -27,8 +36,18 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
+        if (!credentials?.email || !credentials?.password) {
+          throw new Error("Invalid credentials");
+        }
+
         const user = await prisma.user.findUnique({
-          where: { email: credentials?.email },
+          where: { email: credentials.email },
+          select: {
+            id: true,
+            email: true,
+            name: true,
+            password: true,
+          },
         });
 
         if (!user) {
@@ -36,23 +55,18 @@ export const authOptions: NextAuthOptions = {
         }
 
         const isPasswordValid = await compare(
-          credentials?.password || "",
+          credentials.password,
           user.password
         );
+
         if (!isPasswordValid) {
           throw new Error("Invalid credentials");
         }
 
-        return { id: user.id, email: user.email, name: user.name };
+        return user;
       },
     }),
   ],
-  pages: {
-    signIn: "/auth/signin",
-  },
-  session: {
-    strategy: "jwt",
-  },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
@@ -63,11 +77,21 @@ export const authOptions: NextAuthOptions = {
       return token;
     },
     async session({ session, token }) {
-      if (token) {
-        session.user.id = token.id as number;
-        session.user.email = token.email as string;
-        session.user.name = token.name as string;
+      // 🟢 Fetch latest user data
+      const dbUser = await prisma.user.findUnique({
+        where: { id: token.id as number },
+        select: {
+          id: true,
+          email: true,
+          name: true,
+        },
+      });
+      if (dbUser) {
+        session.user.id = dbUser.id;
+        session.user.name = dbUser.name;
+        session.user.email = dbUser.email;
       }
+
       return session;
     },
   },

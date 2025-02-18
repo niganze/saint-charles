@@ -6,44 +6,55 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useMutation } from "@tanstack/react-query";
-import { signInUser } from "../auth.api";
 import { Input } from "@/components/ui/input";
+import { Loader } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { SignInInput, signInSchema } from "@/lib/validations/auth";
 
 export const LoginForm = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignInInput>({
+    resolver: zodResolver(signInSchema),
+  });
+
   const mutation = useMutation({
-    mutationFn: signInUser,
-    onSuccess: async (data) => {
+    mutationFn: async (data: SignInInput) => {
+      setIsLoading(true);
       const res = await signIn("credentials", {
-        email: data.email,
-        password: data.password,
+        ...data,
         redirect: false,
       });
 
       if (res?.error) {
-        toast.error("Invalid credentials");
-        return;
+        throw new Error(res.error);
       }
 
-      router.push("/admin");
-      toast.success("Signed in successfully");
+      return res;
     },
-    onError: () => {
-      toast.error("An error occurred");
+    onSuccess: () => {
+      toast.success("Welcome back!");
+      router.push("/admin");
+      router.refresh();
+    },
+    onError: (error: Error) => {
+      toast.error(error.message || "Invalid credentials");
+    },
+    onSettled: () => {
+      setIsLoading(false);
     },
   });
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-
-    mutation.mutate({
-      email: formData.get("email") as string,
-      password: formData.get("password") as string,
-    });
-  };
+  const onSubmit = handleSubmit((data) => {
+    mutation.mutate(data);
+  });
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -56,39 +67,45 @@ export const LoginForm = () => {
             Sign in to your account
           </h2>
         </div>
-        <form onSubmit={handleSubmit} className="mt-8 space-y-6">
-          <div className="rounded-md shadow-sm -space-y-px">
+        <form onSubmit={onSubmit} className="mt-8 space-y-6">
+          <div className="rounded-md shadow-sm space-y-4">
             <div>
               <Input
-                name="email"
+                label="Email address"
+                {...register("email")}
                 type="email"
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-sc-red focus:border-sc-red focus:z-10 sm:text-sm"
-                placeholder="Email address"
+                error={errors.email?.message}
+                placeholder="Enter your email address"
                 disabled={isLoading}
+                autoComplete="email"
+                required
               />
             </div>
             <div>
               <Input
-                name="password"
+                label="Password"
+                {...register("password")}
                 type="password"
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-sc-red focus:border-sc-red focus:z-10 sm:text-sm"
-                placeholder="Password"
+                error={errors.password?.message}
+                placeholder="Enter your password"
                 disabled={isLoading}
+                autoComplete="current-password"
+                required
               />
             </div>
           </div>
 
-          <div>
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-sc-red hover:bg-sc-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sc-red disabled:opacity-50"
-            >
-              {isLoading ? "Signing in..." : "Sign in"}
-            </button>
-          </div>
+          <Button
+            type="submit"
+            className="w-full group relative flex justify-center py-2 px-4"
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <Loader className="w-4 h-4 animate-spin" />
+            ) : (
+              "Sign in"
+            )}
+          </Button>
         </form>
       </div>
     </div>
