@@ -29,7 +29,7 @@ CREATE TABLE `Testimony` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(191) NOT NULL,
     `content` TEXT NOT NULL,
-    `rating` INTEGER NOT NULL DEFAULT 5,
+    `image` VARCHAR(191) NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
 

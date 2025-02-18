@@ -4,10 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-h2 {
-  color: red;
-}
-
 @layer base {
   html {
     font-family: "Product Sans", system-ui, sans-serif;
