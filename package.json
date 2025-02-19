@@ -9,7 +9,7 @@
     "lint": "next lint",
     "migrate": "prisma migrate dev",
     "postmigrate": "prisma generate",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
     "seed": "ts-node --project tsconfig.seed.json prisma/seed.ts"
   },
   "dependencies": {
