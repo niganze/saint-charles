@@ -10,6 +10,7 @@ const buttonVariants = cva(
       variant: {
         default: "bg-sc-red text-white hover:bg-sc-red/90",
         destructive: "bg-red-500 text-white hover:bg-red-600",
+        "destructive-outline": "border border-red-500 text-red-500",
         outline:
           "border border-gray-200 bg-white hover:bg-gray-50 text-gray-900",
         secondary: "bg-gray-100 text-gray-900 hover:bg-gray-200",
@@ -53,6 +54,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       rightIcon,
       asChild = false,
       children,
+      color,
       ...props
     },
     ref

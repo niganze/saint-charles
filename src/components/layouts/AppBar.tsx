@@ -5,10 +5,31 @@ import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
 import { ChevronDown, LogOut, User, Bell } from "lucide-react";
-
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 export const AppBar = () => {
   const { data: session } = useSession();
   const [showDropdown, setShowDropdown] = useState(false);
+
+  const currentPath = usePathname();
+
+  const links = [
+    {
+      label: "Dashboard",
+      href: "/admin",
+      active: currentPath === "/admin",
+    },
+    {
+      label: "Blogs",
+      href: "/admin/blogs",
+      active: currentPath === "/admin/blogs",
+    },
+    {
+      label: "Testimonies",
+      href: "/admin/testimonies",
+      active: currentPath === "/admin/testimonies",
+    },
+  ];
 
   return (
     <header className="bg-white border-b border-gray-100">
@@ -19,6 +40,18 @@ export const AppBar = () => {
               <Logo />
             </div>
           </Link>
+
+          <nav className="hidden md:flex items-center gap-6">
+            {links.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cn(link.active && "text-sc-red")}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
 
           {session?.user && (
             <div className="flex items-center gap-6">

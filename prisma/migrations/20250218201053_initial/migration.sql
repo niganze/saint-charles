@@ -14,6 +14,7 @@ CREATE TABLE `User` (
 -- CreateTable
 CREATE TABLE `Blog` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `image` VARCHAR(191) NULL,
     `title` VARCHAR(191) NOT NULL,
     `content` TEXT NOT NULL,
     `published` BOOLEAN NOT NULL DEFAULT false,

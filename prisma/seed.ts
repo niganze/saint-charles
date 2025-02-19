@@ -62,7 +62,7 @@ async function main() {
   console.log("Creating sample blog posts...");
   blogs.forEach(async (blog) => {
     await prisma.blog.create({
-      data: { ...blog, published: true },
+      data: { ...blog, published: true, publishedAt: new Date() },
     });
   });
 

@@ -18,6 +18,7 @@ model User {
 
 model Blog {
   id        Int      @id @default(autoincrement())
+  image     String?
   title     String
   content   String   @db.Text
   published Boolean  @default(false)
