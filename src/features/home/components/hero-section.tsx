@@ -4,17 +4,11 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  GraduationCap,
-  BookOpen,
-  ArrowRight,
-  Target,
-  Users,
-} from "lucide-react";
+import { BookOpen, Target, Users } from "lucide-react";
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-white to-gray-50/50 pt-24 pb-16">
+    <section className="relative overflow-visible bg-gradient-to-b from-white to-gray-50/50 pt-24 pb-16">
       {/* Background Patterns */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute right-1/4 top-1/4 w-96 h-96 bg-sc-red/10 rounded-full blur-3xl" />
@@ -90,7 +84,7 @@ export function HeroSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="flex flex-col items-center rounded-2xl bg-white p-4 shadow-sm ring-1 ring-gray-200/50 hover:shadow-md transition-all"
+                className=" flex flex-col items-center rounded-2xl bg-white p-4 shadow-sm ring-1 ring-gray-200/50 hover:shadow-md transition-all"
               >
                 <div className="p-2 rounded-lg bg-sc-yellow/10">
                   <Users className="h-6 w-6 text-sc-yellow" />
@@ -102,7 +96,7 @@ export function HeroSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
-                className="flex flex-col items-center rounded-2xl bg-white p-4 shadow-sm ring-1 ring-gray-200/50 hover:shadow-md transition-all"
+                className="max-md:col-span-2 flex flex-col items-center rounded-2xl bg-white p-4 shadow-sm ring-1 ring-gray-200/50 hover:shadow-md transition-all"
               >
                 <div className="p-2 rounded-lg bg-sc-yellow/10">
                   <Target className="h-6 w-6 text-sc-yellow" />

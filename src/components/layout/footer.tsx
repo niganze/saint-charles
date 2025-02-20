@@ -90,8 +90,7 @@ export function Footer() {
               <Logo variant="footer" />
             </div>
             <p className="leading-relaxed">
-              Providing high-quality German language education since 2021. Join
-              us on your journey to mastering the German language.
+              Join us on your journey to mastering the German language.
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
               <motion.div
@@ -183,6 +182,29 @@ export function Footer() {
                   </Link>
                 </motion.li>
               ))}
+
+              <motion.li
+                key="register"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.5,
+                  delay: 0.1 * navigation.main.length,
+                }}
+              >
+                <Button
+                  asChild
+                  size="lg"
+                  variant="ghost"
+                  className="bg-white/5 backdrop-blur-sm ring-1 w-full hover:bg-white/10 hover:text-white/80 ring-white/10 hover:ring-sc-red/20 group relative overflow-hidden"
+                >
+                  <Link href="/register" className="flex items-center gap-2">
+                    Register
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </Button>
+              </motion.li>
             </ul>
           </motion.div>
 

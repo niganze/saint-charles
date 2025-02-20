@@ -106,9 +106,7 @@ export function RecentBlogsSection() {
                 <h3 className="text-xl font-semibold text-gray-900 line-clamp-2 mb-3">
                   {blog.title}
                 </h3>
-                <p className="text-gray-600 line-clamp-3 mb-4">
-                  {blog.content.replace(/<[^>]*>/g, "")}
-                </p>
+
                 <Link
                   href={`/blog/${blog.id}`}
                   className="inline-flex items-center gap-2 text-sc-red hover:text-sc-red/80 transition-colors"
