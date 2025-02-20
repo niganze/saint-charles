@@ -28,9 +28,11 @@ export function BlogGrid() {
     queryFn: getBlogs,
   });
 
+  console.log(blogs);
+
   if (isLoading) {
     return (
-      <div className="container py-24">
+      <div className="container">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {[...Array(6)].map((_, index) => (
             <div
@@ -53,7 +55,7 @@ export function BlogGrid() {
   }
 
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="pb-24 relative overflow-hidden">
       {/* Background Patterns */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute right-1/4 top-1/4 w-96 h-96 bg-sc-red/5 rounded-full blur-3xl" />
@@ -95,9 +97,6 @@ export function BlogGrid() {
                 <h3 className="text-xl font-semibold text-gray-900 line-clamp-2 mb-3">
                   {blog.title}
                 </h3>
-                <p className="text-gray-600 line-clamp-3 mb-4">
-                  {blog.content.replace(/<[^>]*>/g, "")}
-                </p>
                 <Link
                   href={`/blog/${blog.id}`}
                   className="inline-flex items-center gap-2 text-sc-red hover:text-sc-red/80 transition-colors"

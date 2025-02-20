@@ -2,8 +2,6 @@
 
 import { motion } from "framer-motion";
 import { Calendar, Clock, Sun } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 
 const schedules = [
   {
@@ -87,7 +85,7 @@ export function ScheduleSection() {
               <div className="space-y-4">
                 {schedule.times.map((time, timeIndex) => (
                   <motion.div
-                    key={time.time}
+                    key={timeIndex}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}

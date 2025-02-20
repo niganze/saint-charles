@@ -39,7 +39,7 @@ export function BlogHero() {
         </div>
       </motion.div>
 
-      <section className="relative overflow-hidden bg-white py-24">
+      <section className="relative overflow-hidden bg-white pt-24 pb-12">
         {/* Background Pattern */}
         <div className="absolute inset-0 z-0">
           <div className="absolute -left-4 top-0 h-72 w-72 rounded-full bg-sc-red/5 blur-3xl" />

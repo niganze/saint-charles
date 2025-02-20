@@ -4,13 +4,14 @@ import { Logo } from "@/components/ui/logo";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
-import { ChevronDown, LogOut, User, Bell } from "lucide-react";
+import { ChevronDown, LogOut, User, Bell, Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+
 export const AppBar = () => {
   const { data: session } = useSession();
   const [showDropdown, setShowDropdown] = useState(false);
-
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const currentPath = usePathname();
 
   const links = [
@@ -35,18 +36,19 @@ export const AppBar = () => {
     <header className="bg-white border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
         <div className="flex justify-between items-center h-16">
-          <Link href="/" className="flex items-center">
-            <div className="w-32 h-12 relative">
-              <Logo />
-            </div>
-          </Link>
+          <div className="w-32 h-12 relative">
+            <Logo />
+          </div>
 
           <nav className="hidden md:flex items-center gap-6">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={cn(link.active && "text-sc-red")}
+                className={cn(
+                  "text-gray-600 hover:text-sc-red transition-colors",
+                  link.active && "text-sc-red"
+                )}
               >
                 {link.label}
               </Link>
@@ -55,11 +57,7 @@ export const AppBar = () => {
 
           {session?.user && (
             <div className="flex items-center gap-6">
-              <button className="text-gray-400 hover:text-sc-red transition-colors">
-                <Bell className="w-5 h-5" />
-              </button>
-
-              <div className="relative">
+              <div className="relative hidden md:block">
                 <button
                   onClick={() => setShowDropdown(!showDropdown)}
                   className="flex items-center gap-3 text-gray-700 hover:text-sc-red focus:outline-none transition-all duration-200"
@@ -100,9 +98,59 @@ export const AppBar = () => {
                   </div>
                 )}
               </div>
+
+              {/* Mobile menu button */}
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="md:hidden text-gray-600 hover:text-sc-red transition-colors"
+              >
+                {isMobileMenuOpen ? (
+                  <X className="h-6 w-6" />
+                ) : (
+                  <Menu className="h-6 w-6" />
+                )}
+              </button>
             </div>
           )}
         </div>
+
+        {/* Mobile menu */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden py-4 border-t border-gray-100">
+            <nav className="flex flex-col gap-4">
+              {links.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={cn(
+                    "text-gray-600 hover:text-sc-red transition-colors",
+                    link.active && "text-sc-red"
+                  )}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <div className="pt-4 border-t border-gray-100">
+                <Link
+                  href="/admin/profile"
+                  className="flex items-center py-2 text-gray-600 hover:text-sc-red transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <User className="w-4 h-4 mr-3" />
+                  Profile Settings
+                </Link>
+                <button
+                  onClick={() => signOut()}
+                  className="flex items-center w-full py-2 text-gray-600 hover:text-sc-red transition-colors"
+                >
+                  <LogOut className="w-4 h-4 mr-3" />
+                  Sign out
+                </button>
+              </div>
+            </nav>
+          </div>
+        )}
       </div>
     </header>
   );
