@@ -124,15 +124,6 @@ export function CoursesOverview() {
                     ))}
                   </ul>
                 </div>
-
-                <div className="mt-6 pt-6 border-t border-gray-200">
-                  <Link
-                    href={`/courses/${course.level.toLowerCase()}`}
-                    className="inline-flex items-center gap-2 text-sc-red hover:text-sc-red/80 transition-colors"
-                  >
-                    Learn More <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </div>
               </div>
             </motion.div>
           ))}
