@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Testimony } from "@prisma/client";
 import { TestimonyDialog } from "@/features/testimonies/components/TestimonyDialog";
-import { DeleteConfirmDialog } from "@/features/testimonies/components/DeleteConfirmDialog";
+import { DeleteConfirmDialog } from "@/components/ui/delete-confirm-dialog";
 import {
   getTestimonies,
   createTestimony,
@@ -196,6 +196,8 @@ export default function TestimoniesPage() {
         }}
         onConfirm={handleConfirmDelete}
         isDeleting={deleteMutation.isPending}
+        title="Delete Testimony"
+        description="Are you sure you want to delete this testimony? This action cannot be undone."
       />
     </div>
   );

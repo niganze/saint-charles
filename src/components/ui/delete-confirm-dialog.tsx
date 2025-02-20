@@ -6,12 +6,15 @@ import {
   DialogFooter,
 } from "@/components/ui/modal";
 import { Button } from "@/components/ui/button";
+import { Loader2 } from "lucide-react";
 
 interface DeleteConfirmDialogProps {
   open: boolean;
   onClose: () => void;
   onConfirm: () => Promise<void>;
   isDeleting: boolean;
+  title: string;
+  description: string;
 }
 
 export function DeleteConfirmDialog({
@@ -19,18 +22,17 @@ export function DeleteConfirmDialog({
   onClose,
   onConfirm,
   isDeleting,
+  title,
+  description,
 }: DeleteConfirmDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Delete Testimony</DialogTitle>
+          <DialogTitle>{title}</DialogTitle>
         </DialogHeader>
         <div className="py-4">
-          <p className="text-sm text-gray-500">
-            Are you sure you want to delete this testimony? This action cannot
-            be undone.
-          </p>
+          <p className="text-sm text-gray-500">{description}</p>
         </div>
         <DialogFooter>
           <Button
@@ -47,7 +49,11 @@ export function DeleteConfirmDialog({
             onClick={onConfirm}
             disabled={isDeleting}
           >
-            {isDeleting ? "Deleting..." : "Delete"}
+            {isDeleting ? (
+              <Loader2 className="w-4 h-4 animate-spin" />
+            ) : (
+              "Delete"
+            )}
           </Button>
         </DialogFooter>
       </DialogContent>

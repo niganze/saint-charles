@@ -2,6 +2,7 @@ import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
+import { Loader } from "lucide-react";
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center rounded-lg text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
@@ -10,6 +11,7 @@ const buttonVariants = cva(
       variant: {
         default: "bg-sc-red text-white hover:bg-sc-red/90",
         destructive: "bg-red-500 text-white hover:bg-red-600",
+        "destructive-outline": "border border-red-500 text-red-500",
         outline:
           "border border-gray-200 bg-white hover:bg-gray-50 text-gray-900",
         secondary: "bg-gray-100 text-gray-900 hover:bg-gray-200",
@@ -53,6 +55,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       rightIcon,
       asChild = false,
       children,
+      color,
       ...props
     },
     ref
@@ -67,7 +70,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {isLoading ? (
           <div className="flex items-center gap-2">
             <div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
-            <span>Loading...</span>
+            <span>
+              L<Loader className="w-4 animate-spin" />
+            </span>
           </div>
         ) : (
           <div className="flex items-center gap-2">
