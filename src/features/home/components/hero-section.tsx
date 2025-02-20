@@ -62,18 +62,13 @@ export function HeroSection() {
               opportunities.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-4">
+            <div className="mt-8 flex gap-4">
               <Button
                 asChild
                 size="lg"
                 className="bg-sc-red hover:bg-sc-red/90"
               >
-                <Link href="/register" className="flex items-center gap-2">
-                  Register
-                </Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="5">
-                <Link href="/courses">View Courses</Link>
+                <Link href="/contact">Register</Link>
               </Button>
             </div>
 
@@ -123,7 +118,7 @@ export function HeroSection() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="relative lg:mt-0 overflow-visible"
+            className="relative lg:mt-0 overflow-visible p-4"
           >
             <div className="relative mx-auto w-full max-w-lg lg:max-w-none">
               <div className="relative aspect-[4/3] w-full rounded-2xl overflow-visible">

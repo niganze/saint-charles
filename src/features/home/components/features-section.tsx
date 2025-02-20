@@ -57,14 +57,24 @@ const levels = [
 
 export function FeaturesSection() {
   return (
-    <section className="py-24 bg-gray-50/50">
-      {/* Background Patterns */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute right-1/4 top-1/4 w-96 h-96 bg-sc-red/5 rounded-full blur-3xl" />
-        <div className="absolute left-1/4 bottom-1/4 w-96 h-96 bg-sc-yellow/5 rounded-full blur-3xl" />
+    <section className="py-24 bg-sc-black text-white relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute -right-64 top-0 w-[500px] h-[500px] bg-sc-red/5 rounded-full blur-[128px]" />
+        <div className="absolute -left-64 bottom-0 w-[500px] h-[500px] bg-sc-yellow/5 rounded-full blur-[128px]" />
+        <div className="absolute right-1/3 top-1/3 grid grid-cols-3 gap-1 opacity-20 rotate-12">
+          {[...Array(9)].map((_, i) => (
+            <div key={i} className="w-2 h-2 rounded-full bg-sc-red" />
+          ))}
+        </div>
+        <div className="absolute left-1/4 bottom-1/4 grid grid-cols-3 gap-1 opacity-20 -rotate-12">
+          {[...Array(9)].map((_, i) => (
+            <div key={i} className="w-2 h-2 rounded-full bg-sc-yellow" />
+          ))}
+        </div>
       </div>
 
-      <div className="container relative">
+      <div className="container relative z-10">
         <div className="text-center max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -83,7 +93,7 @@ export function FeaturesSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+            className="text-3xl font-bold tracking-tight text-white sm:text-4xl"
           >
             What Sets Saint Charles K. LTD Apart
           </motion.h2>
@@ -92,7 +102,7 @@ export function FeaturesSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="mt-4 text-lg leading-8 text-gray-600"
+            className="mt-4 text-lg leading-8 text-gray-300"
           >
             We provide comprehensive German language education with a focus on
             practical skills and exam preparation.
@@ -114,16 +124,14 @@ export function FeaturesSection() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 * index }}
-              className="flex items-center gap-4 px-6 py-3 bg-white rounded-full shadow-sm hover:shadow-md transition-all group"
+              className="flex items-center gap-4 px-6 py-3 bg-white/5 backdrop-blur-sm rounded-full ring-1 ring-white/10 hover:ring-sc-red/20 transition-all group"
             >
               <div className="flex items-center justify-center w-8 h-8 rounded-full bg-sc-red/10 group-hover:bg-sc-red/20 transition-colors">
                 <span className="text-sm font-bold text-sc-red">
                   {level.name}
                 </span>
               </div>
-              <span className="text-sm font-medium text-gray-600">
-                {level.label}
-              </span>
+              <span className="font-medium text-gray-300">{level.label}</span>
             </motion.div>
           ))}
         </motion.div>
@@ -139,7 +147,7 @@ export function FeaturesSection() {
               transition={{ duration: 0.5, delay: 0.1 * index }}
               className="relative group"
             >
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-b from-white to-gray-50 shadow-sm ring-1 ring-gray-200/50 transition-all duration-300 group-hover:shadow-md group-hover:-translate-y-1" />
+              <div className="absolute inset-0 rounded-3xl bg-white/5 backdrop-blur-sm ring-1 ring-white/10 transition-all duration-300 group-hover:ring-sc-red/20 group-hover:-translate-y-1" />
               <div className="relative p-8">
                 <div
                   className={`inline-flex rounded-xl ${
@@ -151,10 +159,10 @@ export function FeaturesSection() {
                 >
                   <feature.icon className={`h-6 w-6 ${feature.color}`} />
                 </div>
-                <h3 className="mt-4 text-lg font-semibold text-gray-900">
+                <h3 className="mt-4 text-lg font-semibold text-white">
                   {feature.name}
                 </h3>
-                <p className="mt-2 text-gray-600 text-sm leading-6">
+                <p className="mt-2 text-gray-300 leading-6">
                   {feature.description}
                 </p>
               </div>
@@ -185,7 +193,7 @@ export function FeaturesSection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 * index }}
-                className="flex items-center gap-3 text-gray-600 group"
+                className="flex items-center gap-3 text-gray-300 group"
               >
                 <CheckCircle2 className="h-5 w-5 text-gray-500 flex-shrink-0 group-hover:text-sc-yellow transition-colors" />
                 <span>{benefit}</span>

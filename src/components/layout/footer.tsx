@@ -89,7 +89,7 @@ export function Footer() {
             <div className="w-[200px]">
               <Logo variant="footer" />
             </div>
-            <p className="text-sm leading-relaxed">
+            <p className="leading-relaxed">
               Providing high-quality German language education since 2021. Join
               us on your journey to mastering the German language.
             </p>
@@ -104,7 +104,7 @@ export function Footer() {
                     <Phone className="h-5 w-5 text-sc-red" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-medium text-white">Call Us</h3>
+                    <h3 className="font-medium text-white">Call Us</h3>
                     <Link
                       href="tel:+250793763948"
                       className="text-sm text-sc-red hover:text-sc-red/80 transition-colors"
@@ -125,7 +125,7 @@ export function Footer() {
                     <Mail className="h-5 w-5 text-sc-yellow" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-medium text-white">Email Us</h3>
+                    <h3 className=" font-medium text-white">Email Us</h3>
                     <Link
                       href="mailto:info@saintcharles.com"
                       className="text-sm text-sc-yellow hover:text-sc-yellow/80 transition-colors"
@@ -146,7 +146,7 @@ export function Footer() {
                     <MapPin className="h-5 w-5 text-sc-red" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-medium text-white">Visit Us</h3>
+                    <h3 className=" font-medium text-white">Visit Us</h3>
                     <p className="text-sm">
                       Centre Saint Paul, Nyarugenge, Kigali Rwanda (KN
                       32st.Kigali)
@@ -223,25 +223,11 @@ export function Footer() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="mt-16 pt-8 border-t border-gray-800/50"
         >
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm">
+          <div className="flex justify-center items-center gap-4">
+            <p className="text-sm text-center">
               © {new Date().getFullYear()} Saint Charles K. LTD. All rights
               reserved.
             </p>
-            <div className="flex items-center gap-6">
-              <Link
-                href="/privacy"
-                className="text-sm hover:text-white transition-colors"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                href="/terms"
-                className="text-sm hover:text-white transition-colors"
-              >
-                Terms of Service
-              </Link>
-            </div>
           </div>
         </motion.div>
       </div>

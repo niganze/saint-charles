@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <head>
-        <link rel="icon" href="/logo.png" sizes="32x32" />
+        <link rel="icon" href="/logos/white-red.png" sizes="32x32" />
       </head>
       <body className={`${inter.className} flex min-h-full flex-col`}>
         <Header />
