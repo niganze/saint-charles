@@ -185,7 +185,7 @@ export default function BlogsPage() {
               <TableCell>{blog.title}</TableCell>
               <TableCell>
                 <Button
-                  variant={blog.published ? "destructive-outline" : "outline"}
+                  variant={blog.published ? "destructiveOutline" : "outline"}
                   size="sm"
                   onClick={() => handlePublishToggle(blog)}
                 >

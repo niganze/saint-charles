@@ -5,24 +5,27 @@ import { cn } from "@/lib/utils";
 import { Loader } from "lucide-react";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center rounded-lg text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-lg text-base font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950/10 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "bg-sc-red text-white hover:bg-sc-red/90",
-        destructive: "bg-red-500 text-white hover:bg-red-600",
-        "destructive-outline": "border border-red-500 text-red-500",
+        default: "bg-sc-red text-white shadow hover:bg-sc-red/90 h-12 px-8",
+        destructive:
+          "bg-red-500 text-white shadow-sm hover:bg-red-500/90 h-12 px-8",
         outline:
-          "border border-gray-200 bg-white hover:bg-gray-50 text-gray-900",
-        secondary: "bg-gray-100 text-gray-900 hover:bg-gray-200",
-        ghost: "hover:bg-gray-100 text-gray-900",
-        link: "text-sc-red underline-offset-4 hover:underline",
+          "border border-gray-200 bg-white shadow-sm hover:bg-gray-100 hover:text-gray-900 h-12 px-8",
+        secondary:
+          "bg-gray-100 text-gray-900 shadow-sm hover:bg-gray-100/80 h-12 px-8",
+        ghost: "hover:bg-gray-100 hover:text-gray-900 px-4",
+        link: "text-gray-900 underline-offset-4 hover:underline",
+        destructiveOutline:
+          "border border-red-500 text-red-500 shadow-sm hover:bg-red-500/5 hover:border-red-500/30 h-12 px-8",
       },
       size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
-        icon: "h-10 w-10",
+        default: "h-10 px-8",
+        sm: "h-10 px-4",
+        lg: "h-14 px-10",
+        icon: "h-12 w-12",
       },
       isLoading: {
         true: "cursor-not-allowed opacity-50",

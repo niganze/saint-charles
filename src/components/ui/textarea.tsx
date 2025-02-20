@@ -1,53 +1,36 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { VariantProps, cva } from "class-variance-authority";
 import InputLabel from "./input-label";
 
-const inputVariants = cva(
-  "flex w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sc-red/20 focus:border-sc-red disabled:cursor-not-allowed disabled:opacity-50",
-  {
-    variants: {
-      hasLeftIcon: {
-        true: "pl-10",
-      },
-    },
-    defaultVariants: {
-      hasLeftIcon: false,
-    },
-  }
-);
-
-export interface InputProps
-  extends React.InputHTMLAttributes<HTMLTextAreaElement>,
-    VariantProps<typeof inputVariants> {
-  icon?: React.ReactNode;
+export interface TextareaProps
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   error?: string;
   label?: string;
 }
 
-const Textarea = React.forwardRef<HTMLTextAreaElement, InputProps>(
-  ({ className, icon, error, label, ...props }, ref) => {
+const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
+  ({ className, error, label, ...props }, ref) => {
     return (
-      <div className="flex flex-col gap-2">
-        {label && <InputLabel htmlFor={props.name}>{label}</InputLabel>}
-        <div className="relative">
-          {icon && (
-            <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
-              {icon}
-            </div>
+      <div className="relative">
+        {label && (
+          <InputLabel className="text-sm font-medium text-gray-900">
+            {label}
+          </InputLabel>
+        )}
+        <textarea
+          className={cn(
+            "flex min-h-[80px] w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm ring-offset-white placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sc-red focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+            error && "border-red-500",
+            className
           )}
-          <textarea
-            className={cn(inputVariants({ hasLeftIcon: !!icon, className }))}
-            ref={ref}
-            {...props}
-            rows={5}
-          ></textarea>
-        </div>
-        {error && <p className="text-xs text-sc-red">{error}</p>}
+          ref={ref}
+          {...props}
+        />
+        {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
       </div>
     );
   }
 );
 Textarea.displayName = "Textarea";
 
-export { Textarea, inputVariants };
+export { Textarea };
