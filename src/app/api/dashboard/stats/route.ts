@@ -13,16 +13,26 @@ export async function GET(request: NextRequest) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    const [userCount, publishedBlogCount, testimonyCount] = await Promise.all([
+    const [
+      userCount,
+      publishedBlogCount,
+      testimonyCount,
+      contactCount,
+      registrationCount,
+    ] = await Promise.all([
       prisma.user.count(),
       prisma.blog.count({ where: { published: true } }),
       prisma.testimony.count(),
+      prisma.contact.count(),
+      prisma.registration.count(),
     ]);
 
     return NextResponse.json({
       userCount,
       publishedBlogCount,
       testimonyCount,
+      contactCount,
+      registrationCount,
     });
   } catch (error) {
     console.error("[DASHBOARD_STATS]", error);

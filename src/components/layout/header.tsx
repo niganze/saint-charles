@@ -56,14 +56,9 @@ export function Header() {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex md:items-center md:gap-8">
+          <div className="hidden lg:flex lg:items-center lg:gap-8">
             {navigation.map((item) => (
-              <div
-                key={item.name}
-                className="relative"
-                onMouseEnter={() => setHoveredItem(item.name)}
-                onMouseLeave={() => setHoveredItem(null)}
-              >
+              <div key={item.name} className="relative group">
                 <Link
                   href={item.href}
                   className="font-medium text-gray-700 hover:text-sc-red transition-colors relative group"
@@ -73,12 +68,12 @@ export function Header() {
                 </Link>
 
                 {/* Dropdown for Courses */}
-                {item.children && hoveredItem === item.name && (
+                {item.children && (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
-                    className="absolute left-0 mt-2 w-60 rounded-xl bg-white shadow-lg ring-1 ring-black/5 p-2 backdrop-blur-sm"
+                    className="absolute left-0 w-60 mt-1 rounded-xl bg-white shadow-lg ring-1 ring-black/5 p-2 backdrop-blur-sm group-hover:block hidden"
                   >
                     {item.children.map((child) => (
                       <Link
@@ -93,29 +88,31 @@ export function Header() {
                 )}
               </div>
             ))}
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="border-sc-red/20 text-sc-red hover:bg-sc-red/5 hover:border-sc-red/30"
-            >
-              <Link href="/contact">Contact Us</Link>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              className="bg-sc-red hover:bg-sc-red/90 group relative overflow-hidden"
-            >
-              <Link href="/register" className="flex items-center gap-2">
+            <Link href="/contact">
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="border-sc-red/20 text-sc-red hover:bg-sc-red/5 hover:border-sc-red/30"
+              >
+                Contact Us
+              </Button>
+            </Link>
+            <Link href="/register">
+              <Button
+                asChild
+                size="lg"
+                className="bg-sc-red hover:bg-sc-red/90 group relative overflow-hidden"
+              >
                 Register
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setSidebarOpen(true)}
-            className="md:hidden rounded-lg p-2 text-gray-700 hover:bg-gray-100 transition-colors"
+            className="lg:hidden rounded-lg p-2 text-gray-700 hover:bg-gray-100 transition-colors"
           >
             <Menu className="h-6 w-6" />
           </button>
@@ -177,21 +174,25 @@ export function Header() {
                   </div>
                 ))}
                 <div className="flex flex-col gap-4 mt-4">
-                  <Button
-                    asChild
-                    variant="outline"
-                    className="border-sc-red/20 text-sc-red hover:bg-sc-red/5 hover:border-sc-red/30"
-                    onClick={() => setSidebarOpen(false)}
-                  >
-                    <Link href="/contact">Contact Us</Link>
-                  </Button>
-                  <Button
-                    asChild
-                    className="bg-sc-red hover:bg-sc-red/90"
-                    onClick={() => setSidebarOpen(false)}
-                  >
-                    <Link href="/register">Register Now</Link>
-                  </Button>
+                  <Link href="/contact">
+                    <Button
+                      asChild
+                      variant="outline"
+                      className="border-sc-red/20 text-sc-red hover:bg-sc-red/5 hover:border-sc-red/30"
+                      onClick={() => setSidebarOpen(false)}
+                    >
+                      Contact Us
+                    </Button>
+                  </Link>
+                  <Link href="/register">
+                    <Button
+                      asChild
+                      className="bg-sc-red hover:bg-sc-red/90"
+                      onClick={() => setSidebarOpen(false)}
+                    >
+                      Register Now
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </motion.div>

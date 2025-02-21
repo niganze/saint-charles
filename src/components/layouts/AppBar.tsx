@@ -7,30 +7,21 @@ import { useState } from "react";
 import { ChevronDown, LogOut, User, Bell, Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+
+const navigation = [
+  { name: "Dashboard", href: "/admin" },
+  { name: "Blogs", href: "/admin/blogs" },
+  { name: "Testimonies", href: "/admin/testimonies" },
+  { name: "Contacts", href: "/admin/contacts" },
+  { name: "Registrations", href: "/admin/registrations" },
+];
 
 export const AppBar = () => {
   const { data: session } = useSession();
   const [showDropdown, setShowDropdown] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const currentPath = usePathname();
-
-  const links = [
-    {
-      label: "Dashboard",
-      href: "/admin",
-      active: currentPath === "/admin",
-    },
-    {
-      label: "Blogs",
-      href: "/admin/blogs",
-      active: currentPath === "/admin/blogs",
-    },
-    {
-      label: "Testimonies",
-      href: "/admin/testimonies",
-      active: currentPath === "/admin/testimonies",
-    },
-  ];
 
   return (
     <header className="bg-white border-b border-gray-100">
@@ -41,16 +32,16 @@ export const AppBar = () => {
           </div>
 
           <nav className="hidden md:flex items-center gap-6">
-            {links.map((link) => (
+            {navigation.map((item) => (
               <Link
-                key={link.href}
-                href={link.href}
+                key={item.name}
+                href={item.href}
                 className={cn(
                   "text-gray-600 hover:text-sc-red transition-colors",
-                  link.active && "text-sc-red"
+                  currentPath === item.href && "text-sc-red"
                 )}
               >
-                {link.label}
+                {item.name}
               </Link>
             ))}
           </nav>
@@ -118,17 +109,17 @@ export const AppBar = () => {
         {isMobileMenuOpen && (
           <div className="md:hidden py-4 border-t border-gray-100">
             <nav className="flex flex-col gap-4">
-              {links.map((link) => (
+              {navigation.map((item) => (
                 <Link
-                  key={link.href}
-                  href={link.href}
+                  key={item.name}
+                  href={item.href}
                   className={cn(
                     "text-gray-600 hover:text-sc-red transition-colors",
-                    link.active && "text-sc-red"
+                    currentPath === item.href && "text-sc-red"
                   )}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  {link.label}
+                  {item.name}
                 </Link>
               ))}
               <div className="pt-4 border-t border-gray-100">

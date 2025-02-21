@@ -1,9 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, BookOpen, Clock, GraduationCap } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { Clock, GraduationCap } from "lucide-react";
+import { useEffect } from "react";
 
 const courses = [
   {
@@ -164,8 +163,12 @@ export function CoursesGrid() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 * index }}
-              className="group relative overflow-hidden rounded-2xl bg-white p-8 shadow-sm ring-1 ring-gray-200/50 hover:shadow-lg transition-all"
+              className="group relative rounded-2xl bg-white p-8 shadow-sm ring-1 ring-gray-200/50 hover:shadow-lg transition-all"
             >
+              <div
+                className="absolute -top-28 left-0 w-full h-28"
+                id={`${course.id}`}
+              />
               <div className="absolute top-4 right-4">
                 <div className="w-12 h-12 rounded-full bg-sc-yellow/10 flex items-center justify-center text-sc-red font-bold">
                   {course.level}
