@@ -5,7 +5,14 @@ import { StatCard } from "@/features/dashboard/components/StatCard";
 import { getDashboardStats } from "@/features/dashboard/dashboard.api";
 import { useQuery } from "@tanstack/react-query";
 import { LoadingDots } from "@/components/ui/loading-dots";
-import { Users, BookOpen, MessageSquare, Clock } from "lucide-react";
+import {
+  Users,
+  BookOpen,
+  MessageSquare,
+  Clock,
+  Mail,
+  UserPlus,
+} from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 
 export default function AdminDashboard() {
@@ -53,12 +60,24 @@ export default function AdminDashboard() {
           value={
             isStatsLoading ? <LoadingDots /> : stats?.publishedBlogCount ?? 0
           }
-          icon={<BookOpen className="w-5 h-5 text-sc-red" />}
+          icon={<BookOpen className="w-5 h-5 text-sc-yellow" />}
         />
         <StatCard
           title="Testimonies"
           value={isStatsLoading ? <LoadingDots /> : stats?.testimonyCount ?? 0}
           icon={<MessageSquare className="w-5 h-5 text-sc-red" />}
+        />
+        <StatCard
+          title="Contact Inquiries"
+          value={isStatsLoading ? <LoadingDots /> : stats?.contactCount ?? 0}
+          icon={<Mail className="w-5 h-5 text-sc-yellow" />}
+        />
+        <StatCard
+          title="Course Registrations"
+          value={
+            isStatsLoading ? <LoadingDots /> : stats?.registrationCount ?? 0
+          }
+          icon={<UserPlus className="w-5 h-5 text-sc-red" />}
         />
       </div>
     </div>

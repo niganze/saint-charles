@@ -78,16 +78,20 @@ export function AboutHero() {
                 German language institution.
               </p>
               <div className="mt-8 flex gap-4">
-                <Button
-                  asChild
-                  size="lg"
-                  className="bg-sc-red hover:bg-sc-red/90"
-                >
-                  <Link href="/contact">Register</Link>
-                </Button>
-                <Button asChild size="lg" variant="outline">
-                  <Link href="/courses">Explore Courses</Link>
-                </Button>
+                <Link href="/register">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="bg-sc-red hover:bg-sc-red/90"
+                  >
+                    Register
+                  </Button>
+                </Link>
+                <Link href="/courses">
+                  <Button asChild size="lg" variant="outline">
+                    Explore Courses
+                  </Button>
+                </Link>
               </div>
             </motion.div>
 
@@ -95,50 +99,58 @@ export function AboutHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="grid grid-cols-2 gap-8"
+              className="grid grid-cols-2 gap-4 sm:gap-8"
             >
               <motion.div
                 whileHover={{ y: -5 }}
-                className="relative overflow-hidden rounded-2xl bg-white p-8 shadow-sm ring-1 ring-gray-200/50 hover:shadow-md transition-all"
+                className="relative overflow-hidden rounded-2xl bg-white p-4 md:p-8 shadow-sm ring-1 ring-gray-200/50 hover:shadow-md transition-all"
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-sc-red/10">
                   <Users className="h-6 w-6 text-sc-red" />
                 </div>
-                <p className="mt-4 text-3xl font-bold text-gray-900">100+</p>
-                <p className="text-gray-600">Success Stories</p>
+                <p className="mt-4 max-md:text-2xl text-3xl font-bold text-gray-900">
+                  100+
+                </p>
+                <p className="text-gray-600 max-md:text-sm">Success Stories</p>
               </motion.div>
 
               <motion.div
                 whileHover={{ y: -5 }}
-                className="relative overflow-hidden rounded-2xl bg-white p-8 shadow-sm ring-1 ring-gray-200/50 hover:shadow-md transition-all"
+                className="relative overflow-hidden rounded-2xl bg-white p-4 md:p-8 shadow-sm ring-1 ring-gray-200/50 hover:shadow-md transition-all"
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-sc-yellow/10">
                   <GraduationCap className="h-6 w-6 text-sc-yellow" />
                 </div>
-                <p className="mt-4 text-3xl font-bold text-gray-900">6</p>
-                <p className="text-gray-600">Course Levels</p>
+                <p className="mt-4 max-md:text-2xl text-3xl font-bold text-gray-900">
+                  6
+                </p>
+                <p className="text-gray-600 max-md:text-sm">Course Levels</p>
               </motion.div>
 
               <motion.div
                 whileHover={{ y: -5 }}
-                className="relative overflow-hidden rounded-2xl bg-white p-8 shadow-sm ring-1 ring-gray-200/50 hover:shadow-md transition-all"
+                className="relative overflow-hidden rounded-2xl bg-white p-4 md:p-8 shadow-sm ring-1 ring-gray-200/50 hover:shadow-md transition-all"
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-sc-yellow/10">
                   <Clock className="h-6 w-6 text-sc-yellow" />
                 </div>
-                <p className="mt-4 text-3xl font-bold text-gray-900">95%</p>
-                <p className="text-gray-600">Pass Rate</p>
+                <p className="mt-4 max-md:text-2xl text-3xl font-bold text-gray-900">
+                  95%
+                </p>
+                <p className="text-gray-600 max-md:text-sm">Pass Rate</p>
               </motion.div>
 
               <motion.div
                 whileHover={{ y: -5 }}
-                className="relative overflow-hidden rounded-2xl bg-white p-8 shadow-sm ring-1 ring-gray-200/50 hover:shadow-md transition-all"
+                className="relative overflow-hidden rounded-2xl bg-white p-4 md:p-8 shadow-sm ring-1 ring-gray-200/50 hover:shadow-md transition-all"
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-sc-red/10">
                   <Star className="h-6 w-6 text-sc-red" />
                 </div>
-                <p className="mt-4 text-3xl font-bold text-gray-900">4.9</p>
-                <p className="text-gray-600">Student Rating</p>
+                <p className="mt-4 max-md:text-2xl text-3xl font-bold text-gray-900">
+                  4.9
+                </p>
+                <p className="text-gray-600 max-md:text-sm">Student Rating</p>
               </motion.div>
             </motion.div>
           </div>

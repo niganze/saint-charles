@@ -1,209 +1,198 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { ContactFormData, contactSchema } from "@/features/contact/types";
+import { CheckCircle2, Loader, Mail, MapPin, Phone } from "lucide-react";
+import { toast } from "react-hot-toast";
+import { useMutation } from "@tanstack/react-query";
 
 export function ContactSection() {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema),
+  });
+
+  const mutation = useMutation({
+    mutationFn: async (data: ContactFormData) => {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+    },
+  });
+
+  const onSubmit = async (data: ContactFormData) => {
+    try {
+      mutation.mutate(data, {
+        onSuccess: () => {
+          setIsSubmitted(true);
+          reset();
+        },
+        onError: () => {
+          toast.error("Failed to submit contact form. Please try again.");
+        },
+      });
+    } catch (error) {
+      console.error("Contact form error:", error);
+      toast.error("Failed to submit contact form. Please try again.");
+    }
+  };
+
   return (
-    <section className="relative overflow-hidden bg-white py-24">
+    <section className="relative overflow-hidden bg-white pb-24">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute right-1/4 top-1/4 h-96 w-96 rounded-full bg-sc-red/5 blur-3xl" />
+        <div className="absolute left-1/4 bottom-1/4 h-96 w-96 rounded-full bg-sc-yellow/5 blur-3xl" />
+      </div>
+
       <div className="container relative z-10">
         <div className="grid gap-12 lg:grid-cols-2">
           {/* Contact Information */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
+          <div>
             <h2 className="text-3xl font-bold tracking-tight text-gray-900">
-              Contact Information
+              Get in Touch
             </h2>
             <p className="mt-4 text-lg text-gray-600">
-              Get in touch with us through any of these channels. We're here to
-              help you on your journey to mastering German.
+              Have questions about our German language courses? Want to learn
+              more about our programs? We're here to help!
             </p>
 
-            <div className="mt-12 space-y-8">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="flex gap-4"
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-sc-red/10 flex-shrink-0">
+            <div className="mt-8 space-y-6">
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-sc-red/10">
                   <MapPin className="h-6 w-6 text-sc-red" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900">Our Location</h3>
-                  <p className="mt-2 text-gray-600">
-                    KN 32 Ave, Kigali, Rwanda
-                  </p>
+                  <h3 className="font-semibold text-gray-900">Location</h3>
+                  <p className="text-gray-600">Kigali, Rwanda</p>
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="flex gap-4"
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-sc-yellow/10 flex-shrink-0">
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-sc-yellow/10">
                   <Phone className="h-6 w-6 text-sc-yellow" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900">Phone Number</h3>
-                  <p className="mt-2 text-gray-600">+250 788 123 456</p>
+                  <h3 className="font-semibold text-gray-900">Phone</h3>
+                  <p className="text-gray-600">+250 788 123 456</p>
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                className="flex gap-4"
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-sc-red/10 flex-shrink-0">
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-sc-red/10">
                   <Mail className="h-6 w-6 text-sc-red" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900">Email Address</h3>
-                  <p className="mt-2 text-gray-600">info@saintcharles.rw</p>
+                  <h3 className="font-semibold text-gray-900">Email</h3>
+                  <p className="text-gray-600">info@saintcharles.rw</p>
                 </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-                className="flex gap-4"
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-sc-yellow/10 flex-shrink-0">
-                  <Clock className="h-6 w-6 text-sc-yellow" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900">Working Hours</h3>
-                  <p className="mt-2 text-gray-600">
-                    Monday - Friday: 8:00 AM - 8:30 PM
-                    <br />
-                    Saturday - Sunday: 8:30 AM - 3:30 PM
-                  </p>
-                </div>
-              </motion.div>
+              </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="relative overflow-hidden rounded-2xl bg-white p-8 shadow-sm ring-1 ring-gray-200/50"
-          >
-            <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-              Send us a Message
-            </h2>
-            <p className="mt-4 text-gray-600">
-              Fill out the form below and we'll get back to you as soon as
-              possible.
-            </p>
-
-            <form className="mt-8 space-y-6">
-              <div className="grid gap-6 sm:grid-cols-2">
-                <div>
-                  <label
-                    htmlFor="first-name"
-                    className="block text-sm font-medium text-gray-700"
+          <div className="bg-white p-6 sm:p-12 rounded-lg shadow">
+            <AnimatePresence mode="wait">
+              {isSubmitted ? (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  className="text-center"
+                >
+                  <div className="flex justify-center mb-6">
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ delay: 0.2 }}
+                    >
+                      <CheckCircle2 className="w-16 h-16 text-sc-yellow" />
+                    </motion.div>
+                  </div>
+                  <h2 className="text-2xl font-bold mb-4">Message Sent!</h2>
+                  <p className="text-gray-600 mb-8">
+                    Thank you for contacting Saint Charles K. LTD. We will get
+                    back to you as soon as possible.
+                  </p>
+                  <Button
+                    variant="outline"
+                    onClick={() => setIsSubmitted(false)}
                   >
-                    First Name
-                  </label>
-                  <Input
-                    type="text"
-                    id="first-name"
-                    name="first-name"
-                    className="mt-2"
-                    required
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="last-name"
-                    className="block text-sm font-medium text-gray-700"
+                    Send Another Message
+                  </Button>
+                </motion.div>
+              ) : (
+                <motion.form
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  onSubmit={handleSubmit(onSubmit)}
+                  className="space-y-6"
+                >
+                  <h2 className="text-2xl font-bold mb-4">Send Us a Message</h2>
+                  <p className="text-gray-600 mb-8">
+                    Fill out the form below to send us a message.
+                  </p>
+                  <div>
+                    <Input
+                      label="Full Name"
+                      {...register("name")}
+                      error={errors.name?.message}
+                    />
+                  </div>
+                  <div>
+                    <Input
+                      label="Email"
+                      type="email"
+                      {...register("email")}
+                      error={errors.email?.message}
+                    />
+                  </div>
+                  <div>
+                    <Input
+                      label="Phone Number"
+                      {...register("phone")}
+                      error={errors.phone?.message}
+                    />
+                  </div>
+                  <div>
+                    <Textarea
+                      label="Message"
+                      {...register("message")}
+                      error={errors.message?.message}
+                    />
+                  </div>
+                  <Button
+                    type="submit"
+                    className="w-full"
+                    isLoading={mutation.isPending}
                   >
-                    Last Name
-                  </label>
-                  <Input
-                    type="text"
-                    id="last-name"
-                    name="last-name"
-                    className="mt-2"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Email Address
-                </label>
-                <Input
-                  type="email"
-                  id="email"
-                  name="email"
-                  className="mt-2"
-                  required
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="phone"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Phone Number
-                </label>
-                <Input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  className="mt-2"
-                  required
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Your Message
-                </label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  className="mt-2"
-                  required
-                />
-              </div>
-
-              <Button
-                type="submit"
-                className="w-full bg-sc-red hover:bg-sc-red/90"
-              >
-                Send Message
-              </Button>
-            </form>
-          </motion.div>
+                    {mutation.isPending ? (
+                      <Loader className="w-4 animate-spin" />
+                    ) : (
+                      "Send Message"
+                    )}
+                  </Button>
+                </motion.form>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
       </div>
     </section>

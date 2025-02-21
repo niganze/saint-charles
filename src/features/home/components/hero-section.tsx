@@ -57,13 +57,15 @@ export function HeroSection() {
             </p>
 
             <div className="mt-8 flex gap-4">
-              <Button
-                asChild
-                size="lg"
-                className="bg-sc-red hover:bg-sc-red/90"
-              >
-                <Link href="/contact">Register</Link>
-              </Button>
+              <Link href="/register">
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-sc-red hover:bg-sc-red/90"
+                >
+                  Register
+                </Button>
+              </Link>
             </div>
 
             {/* Stats */}
