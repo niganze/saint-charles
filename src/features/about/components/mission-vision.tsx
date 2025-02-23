@@ -61,9 +61,10 @@ export function MissionVision() {
               <h3 className="text-2xl font-semibold">Our Mission</h3>
             </div>
             <p className="text-gray-300 mb-6">
-              To provide comprehensive German language education that empowers
-              students with the skills and confidence needed for success in
-              German-speaking environments.
+              Our mission is to provide a high-quality, affordable, and
+              supportive learning experience for students who aspire to master
+              the German language. Whether you aim to study, work, or settle in
+              Germany, we are here to guide you every step of the way.
             </p>
             <ul className="space-y-4">
               <li className="flex items-center gap-3">
@@ -95,9 +96,10 @@ export function MissionVision() {
               <h3 className="text-2xl font-semibold">Our Vision</h3>
             </div>
             <p className="text-gray-300 mb-6">
-              To be recognized as Rwanda's premier German language institution,
-              known for excellence in education and student success in
-              international opportunities.
+              We envision a future where every student has access to the tools,
+              knowledge, and resources needed to learn German effectively. Our
+              goal is to be a bridge to success, opening doors to new
+              educational and career opportunities in Germany.
             </p>
             <ul className="space-y-4">
               <li className="flex items-center gap-3">

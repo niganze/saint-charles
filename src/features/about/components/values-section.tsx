@@ -6,33 +6,33 @@ import { Award, Heart, Scale, Target, Users, BookOpen } from "lucide-react";
 const values = [
   {
     icon: Award,
-    name: "Excellence & Quality",
+    name: "Commitment to Excellence",
     description:
-      "We maintain the highest standards in German language education, ensuring every student receives top-quality instruction.",
+      "We strive for the highest standards in teaching and student success.",
     color: "text-sc-yellow",
     bg: "bg-sc-yellow/10",
   },
   {
     icon: Users,
-    name: "Student Success",
+    name: "Affordability",
     description:
-      "Our dedicated team provides personalized support and guidance to help every student achieve their language learning goals.",
+      "Quality education should be accessible to everyone, which is why we offer the most competitive rates.",
     color: "text-sc-red",
     bg: "bg-sc-red/10",
   },
   {
     icon: Scale,
-    name: "Integrity & Trust",
+    name: "Student-Centered Approach",
     description:
-      "We operate with complete transparency and ethical standards, building lasting relationships with our students.",
+      "Our students' success is our top priority, and we provide personalized support throughout their learning journey.",
     color: "text-sc-yellow",
     bg: "bg-sc-yellow/10",
   },
   {
     icon: Heart,
-    name: "Inclusive Community",
+    name: "Integrity",
     description:
-      "We foster a welcoming environment where students from all backgrounds can thrive and learn together.",
+      "We uphold transparency, professionalism, and ethical conduct in all our interactions.",
     color: "text-sc-red",
     bg: "bg-sc-red/10",
   },
@@ -72,9 +72,9 @@ export function ValuesSection() {
           className="text-center"
         >
           <div className="flex items-center justify-center gap-2 mb-6">
-            <div className="h-1 w-12 bg-sc-yellow rounded-full" />
-            <span className="text-sc-yellow font-medium">Our Values</span>
-            <div className="h-1 w-12 bg-sc-yellow rounded-full" />
+            <div className="h-1 w-12 bg-sc-red rounded-full" />
+            <span className="text-sc-red font-medium">Our Values</span>
+            <div className="h-1 w-12 bg-sc-red rounded-full" />
           </div>
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Core Values That Define Us

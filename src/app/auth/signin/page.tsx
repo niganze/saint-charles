@@ -5,7 +5,7 @@ import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { Mail, Lock } from "lucide-react";
+import { Mail, Lock, Loader } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import InputLabel from "@/components/ui/input-label";
@@ -100,7 +100,11 @@ export default function SignIn() {
             </div>
 
             <Button type="submit" disabled={isLoading} className="w-full">
-              {isLoading ? "Signing in..." : "Sign in"}
+              {isLoading ? (
+                <Loader className="h-4 w-4 animate-spin" />
+              ) : (
+                "Sign in"
+              )}
             </Button>
           </form>
         </div>

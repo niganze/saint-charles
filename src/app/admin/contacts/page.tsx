@@ -8,6 +8,14 @@ import { ColumnDef } from "@tanstack/react-table";
 import { DataTable } from "@/components/ui/data-table";
 import { DeleteConfirmDialog } from "@/components/ui/delete-confirm-dialog";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "@/components/ui/modal";
 import { toast } from "react-hot-toast";
 
 interface Contact {
@@ -51,6 +59,7 @@ async function deleteContact(id: number) {
 
 export default function ContactsPage() {
   const [deleteId, setDeleteId] = useState<number | null>(null);
+  const [viewContact, setViewContact] = useState<Contact | null>(null);
   const queryClient = useQueryClient();
 
   const { data: contacts = [] } = useQuery({
@@ -80,13 +89,11 @@ export default function ContactsPage() {
     }
   };
 
+  const handleViewContact = (contact: Contact) => {
+    setViewContact(contact);
+  };
+
   const columns: ColumnDef<Contact>[] = [
-    {
-      accessorKey: "createdAt",
-      header: "Date",
-      cell: ({ row }) =>
-        format(new Date(row.original.createdAt), "MMM d, yyyy"),
-    },
     {
       accessorKey: "name",
       header: "Name",
@@ -96,39 +103,45 @@ export default function ContactsPage() {
       header: "Email",
     },
     {
-      accessorKey: "phone",
-      header: "Phone",
-    },
-    {
       accessorKey: "message",
       header: "Message",
+      cell: ({ row }) => {
+        return (
+          <p className="text-md truncate max-w-72">{row.original.message}</p>
+        );
+      },
     },
     {
       id: "actions",
       cell: ({ row }) => (
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => handleDelete(row.original.id)}
-        >
-          Delete
-        </Button>
+        <div className="flex justify-end space-x-2">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => handleViewContact(row.original)}
+          >
+            View
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => handleDelete(row.original.id)}
+          >
+            Delete
+          </Button>
+        </div>
       ),
     },
   ];
 
   return (
-    <div className="space-y-8">
-      {/* Page Header */}
-      <div>
-        <h2 className="text-2xl font-bold text-gray-900">
-          <span className="text-red-600">Contact</span> Inquiries
-        </h2>
-        <p className="text-gray-500">View and manage contact inquiries</p>
+    <div className="py-10 bg-white rounded-lg shadow p-6 md:px-12">
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold">Contacts</h1>
       </div>
 
       {/* Table */}
-      <div className="rounded-md border bg-white p-6">
+      <div className="">
         <DataTable columns={columns} data={contacts} searchKey="name" />
       </div>
 
@@ -141,6 +154,46 @@ export default function ContactsPage() {
         title="Delete Contact"
         description="Are you sure you want to delete this contact? This action cannot be undone."
       />
+
+      {/* View Contact Modal */}
+      <Dialog open={!!viewContact} onOpenChange={() => setViewContact(null)}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Contact Details</DialogTitle>
+            <DialogDescription>
+              <div className="space-y-2 mt-8">
+                <div className="flex flex-col">
+                  <p className="text-gray-500">Name</p>
+                  <p className="text-md">{viewContact?.name}</p>
+                </div>
+                <div className="flex flex-col">
+                  <p className="text-gray-500">Email</p>
+                  <p className="text-md">{viewContact?.email}</p>
+                </div>
+                <div className="flex flex-col">
+                  <p className="text-gray-500">Phone</p>
+                  <p className="text-md">{viewContact?.phone}</p>
+                </div>
+                <div className="flex flex-col">
+                  <p className="text-gray-500">Message</p>
+                  <p className="text-md">{viewContact?.message}</p>
+                </div>
+                <div className="flex flex-col">
+                  <p className="text-gray-500">Date</p>
+                  <p className="text-md">
+                    {viewContact?.createdAt
+                      ? new Date(viewContact.createdAt).toLocaleDateString()
+                      : "N/A"}
+                  </p>
+                </div>
+              </div>
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button onClick={() => setViewContact(null)}>Close</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

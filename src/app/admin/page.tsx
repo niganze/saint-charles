@@ -49,28 +49,26 @@ export default function AdminDashboard() {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        <StatCard
-          title="Total Users"
-          value={isStatsLoading ? <LoadingDots /> : stats?.userCount ?? 0}
-          icon={<Users className="w-5 h-5 text-sc-red" />}
-        />
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         <StatCard
           title="Published Blogs"
           value={
             isStatsLoading ? <LoadingDots /> : stats?.publishedBlogCount ?? 0
           }
           icon={<BookOpen className="w-5 h-5 text-sc-yellow" />}
+          link="/admin/blogs"
         />
         <StatCard
           title="Testimonies"
           value={isStatsLoading ? <LoadingDots /> : stats?.testimonyCount ?? 0}
           icon={<MessageSquare className="w-5 h-5 text-sc-red" />}
+          link="/admin/testimonies"
         />
         <StatCard
           title="Contact Inquiries"
           value={isStatsLoading ? <LoadingDots /> : stats?.contactCount ?? 0}
           icon={<Mail className="w-5 h-5 text-sc-yellow" />}
+          link="/admin/contacts"
         />
         <StatCard
           title="Course Registrations"
@@ -78,6 +76,7 @@ export default function AdminDashboard() {
             isStatsLoading ? <LoadingDots /> : stats?.registrationCount ?? 0
           }
           icon={<UserPlus className="w-5 h-5 text-sc-red" />}
+          link="/admin/registrations"
         />
       </div>
     </div>
