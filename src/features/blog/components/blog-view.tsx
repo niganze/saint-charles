@@ -98,7 +98,7 @@ export function BlogView({ blog }: BlogViewProps) {
               )}
 
               <div
-                className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-600 prose-a:text-sc-red prose-a:no-underline hover:prose-a:text-sc-red/80"
+                className="prose prose-lg max-w-none prose-img:rounded-lg prose-headings:text-gray-900 prose-p:text-gray-600 prose-a:text-sc-red prose-a:no-underline hover:prose-a:text-sc-red/80 [&_h1]:text-4xl [&_h1]:font-bold [&_h1]:tracking-tight [&_h1]:mt-6 [&_h2]:text-3xl [&_h2]:font-bold [&_h2]:tracking-tight [&_h2]:mt-6 [&_h3]:text-2xl [&_h3]:font-bold [&_h3]:tracking-tight [&_h3]:mt-6 [&_h4]:text-xl [&_h4]:font-bold [&_h4]:tracking-tight [&_h4]:mt-6 [&_h5]:text-lg [&_h5]:font-bold [&_h5]:tracking-tight [&_h5]:mt-6 [&_h6]:text-base [&_h6]:font-bold [&_h6]:tracking-tight [&_h6]:mt-6"
                 dangerouslySetInnerHTML={{ __html: blog.content }}
               />
             </motion.div>

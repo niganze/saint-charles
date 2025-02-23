@@ -114,3 +114,7 @@ body {
     max-width: 80%;
   }
 }
+
+.prose img {
+  border-radius: 0.5rem;
+}

@@ -2,12 +2,19 @@
 
 import { useEffect, useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { DateRange } from "react-day-picker";
 import { format } from "date-fns";
 import { ColumnDef } from "@tanstack/react-table";
 import { DataTable } from "@/components/ui/data-table";
 import { DeleteConfirmDialog } from "@/components/ui/delete-confirm-dialog";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "@/components/ui/modal";
 import { toast } from "react-hot-toast";
 
 interface Registration {
@@ -61,6 +68,9 @@ async function deleteRegistration(id: number) {
 
 export default function RegistrationsPage() {
   const [deleteId, setDeleteId] = useState<number | null>(null);
+  const [viewRegistration, setViewRegistration] = useState<Registration | null>(
+    null
+  );
   const queryClient = useQueryClient();
   const [registrations, setRegistrations] = useState<Registration[]>([]);
 
@@ -119,6 +129,10 @@ export default function RegistrationsPage() {
     }
   };
 
+  const handleViewRegistration = (registration: Registration) => {
+    setViewRegistration(registration);
+  };
+
   const columns: ColumnDef<Registration>[] = [
     {
       accessorKey: "createdAt",
@@ -130,10 +144,7 @@ export default function RegistrationsPage() {
       accessorKey: "name",
       header: "Name",
     },
-    {
-      accessorKey: "email",
-      header: "Email",
-    },
+
     {
       accessorKey: "phone",
       header: "Phone",
@@ -146,21 +157,26 @@ export default function RegistrationsPage() {
       accessorKey: "preferredSchedule",
       header: "Schedule",
     },
-    {
-      accessorKey: "additionalInfo",
-      header: "Additional Info",
-      cell: ({ row }) => row.original.additionalInfo || "-",
-    },
+
     {
       id: "actions",
       cell: ({ row }) => (
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => handleDelete(row.original.id)}
-        >
-          Delete
-        </Button>
+        <div className="flex justify-end space-x-2">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => handleViewRegistration(row.original)}
+          >
+            View
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => handleDelete(row.original.id)}
+          >
+            Delete
+          </Button>
+        </div>
       ),
     },
   ];
@@ -193,6 +209,62 @@ export default function RegistrationsPage() {
         title="Delete Registration"
         description="Are you sure you want to delete this registration? This action cannot be undone."
       />
+
+      {/* View Registration Modal */}
+      <Dialog
+        open={!!viewRegistration}
+        onOpenChange={() => setViewRegistration(null)}
+      >
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Registration Details</DialogTitle>
+            <DialogDescription>
+              <div className="space-y-2 mt-8">
+                <div className="flex flex-col gap-4">
+                  <div className="flex flex-col">
+                    <p className="text-gray-500">Name</p>
+                    <p className="text-md">{viewRegistration?.name}</p>
+                  </div>
+                  <div className="flex flex-col">
+                    <p className="text-gray-500">Email</p>
+                    <p>{viewRegistration?.email}</p>
+                  </div>
+                  <div className="flex flex-col">
+                    <p className="text-gray-500">Phone</p>
+                    <p>{viewRegistration?.phone}</p>
+                  </div>
+
+                  <div className="flex flex-col">
+                    <p className="text-gray-500">Preferred Course</p>
+                    <p>{viewRegistration?.preferredCourse}</p>
+                  </div>
+                  <div className="flex flex-col">
+                    <p className="text-gray-500">Preferred Schedule</p>
+                    <p>{viewRegistration?.preferredSchedule}</p>
+                  </div>
+                  <div className="flex flex-col">
+                    <p className="text-gray-500">Additional Info</p>
+                    <p>{viewRegistration?.additionalInfo || "-"}</p>
+                  </div>
+                  <div className="flex flex-col">
+                    <p className="text-gray-500">Date</p>
+                    <p>
+                      {viewRegistration?.createdAt
+                        ? new Date(
+                            viewRegistration?.createdAt
+                          ).toLocaleDateString()
+                        : "N/A"}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button onClick={() => setViewRegistration(null)}>Close</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

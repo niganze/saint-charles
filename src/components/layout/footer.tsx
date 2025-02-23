@@ -96,7 +96,7 @@ export function Footer() {
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300 }}
-                className="relative overflow-hidden rounded-xl bg-white/5 backdrop-blur-sm p-4 ring-1 ring-white/10 hover:ring-sc-red/20 transition-all duration-300"
+                className="relative sm:col-span-2 overflow-hidden rounded-xl bg-white/5 backdrop-blur-sm p-4 ring-1 ring-white/10 hover:ring-sc-red/20 transition-all duration-300"
               >
                 <div className="flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-sc-red/10">
@@ -108,7 +108,7 @@ export function Footer() {
                       href="tel:+250793763948"
                       className="text-sm text-sc-red hover:text-sc-red/80 transition-colors"
                     >
-                      +250 793 763 948
+                      +250 793 763 948 / +250 781 061 385
                     </Link>
                   </div>
                 </div>
@@ -124,12 +124,12 @@ export function Footer() {
                     <Mail className="h-5 w-5 text-sc-yellow" />
                   </div>
                   <div>
-                    <h3 className=" font-medium text-white">Email Us</h3>
+                    <h3 className="font-medium text-white">Email Us</h3>
                     <Link
-                      href="mailto:info@saintcharles.com"
+                      href="mailto:info@saintcharlesk.com"
                       className="text-sm text-sc-yellow hover:text-sc-yellow/80 transition-colors"
                     >
-                      info@saintcharles.com
+                      info@saintcharlesk.com
                     </Link>
                   </div>
                 </div>
@@ -138,17 +138,16 @@ export function Footer() {
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300 }}
-                className="relative overflow-hidden rounded-xl bg-white/5 backdrop-blur-sm p-4 ring-1 ring-white/10 hover:ring-sc-red/20 transition-all duration-300 sm:col-span-2"
+                className="relative overflow-hidden rounded-xl bg-white/5 backdrop-blur-sm p-4 ring-1 ring-white/10 hover:ring-sc-red/20 transition-all duration-300"
               >
                 <div className="flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-sc-red/10">
                     <MapPin className="h-5 w-5 text-sc-red" />
                   </div>
                   <div>
-                    <h3 className=" font-medium text-white">Visit Us</h3>
+                    <h3 className="font-medium text-white">Visit Us</h3>
                     <p className="text-sm">
-                      Centre Saint Paul, Nyarugenge, Kigali Rwanda (KN
-                      32st.Kigali)
+                      Centre Saint Paul, Nyarugenge, Kigali, Rwanda (KN 32 St.)
                     </p>
                   </div>
                 </div>

@@ -101,7 +101,9 @@ export function RegistrationSection() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900">Contact</h3>
-                    <p className="text-gray-600">+250 788 123 456</p>
+                    <p className="text-gray-600">
+                      +250 793 763 948 / +250 781 061 385
+                    </p>
                   </div>
                 </div>
 
@@ -111,7 +113,7 @@ export function RegistrationSection() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900">Email</h3>
-                    <p className="text-gray-600">info@saintcharles.rw</p>
+                    <p className="text-gray-600">info@saintcharlesk.com</p>
                   </div>
                 </div>
               </div>

@@ -75,32 +75,34 @@ export function ContactSection() {
 
             <div className="mt-8 space-y-6">
               <div className="flex items-center gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-sc-red/10">
+                <div className="flex h-12 min-w-12 items-center justify-center rounded-lg bg-sc-red/10">
                   <MapPin className="h-6 w-6 text-sc-red" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-900">Location</h3>
-                  <p className="text-gray-600">Kigali, Rwanda</p>
+                  <p className="text-gray-600">
+                    Centre Saint Paul, Nyarugenge, Kigali, Rwanda (KN 32 St.)
+                  </p>
                 </div>
               </div>
 
               <div className="flex items-center gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-sc-yellow/10">
+                <div className="flex h-12 min-w-12 items-center justify-center rounded-lg bg-sc-yellow/10">
                   <Phone className="h-6 w-6 text-sc-yellow" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-900">Phone</h3>
-                  <p className="text-gray-600">+250 788 123 456</p>
+                  <p className="text-gray-600">0793763948 / 0781061385</p>
                 </div>
               </div>
 
               <div className="flex items-center gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-sc-red/10">
+                <div className="flex h-12 min-w-12 items-center justify-center rounded-lg bg-sc-red/10">
                   <Mail className="h-6 w-6 text-sc-red" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-900">Email</h3>
-                  <p className="text-gray-600">info@saintcharles.rw</p>
+                  <p className="text-gray-600">info@saintcharlesk.com</p>
                 </div>
               </div>
             </div>
