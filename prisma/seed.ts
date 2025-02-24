@@ -34,11 +34,13 @@ const testimonies = [
     name: "Yvonne MUKAZI",
     content:
       "Thanks to Saint Charles K. LTD, I was able to pass my B1 exam and achieved my goal because of learning Germany language at Saint Charles K. The teachers were incredibly supportive, and the courses were well-organized.",
+    title: "Student",
   },
   {
     name: "Jane Smith",
     content:
-      "I am now studying in Germany, and I couldn’t have gotten here without the excellent preparation I received from Saint Charles K. LTD. They really care about their students.",
+      "I am now studying in Germany, and I couldn't have gotten here without the excellent preparation I received from Saint Charles K. LTD. They really care about their students.",
+    title: "Student",
   },
 ];
 

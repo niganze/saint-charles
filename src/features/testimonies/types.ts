@@ -3,6 +3,7 @@ import { z } from "zod";
 export const testimonySchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   content: z.string().min(10, "Content must be at least 10 characters"),
+  title: z.string().default("Student"),
   image: z.any().optional(),
 });
 
@@ -12,6 +13,7 @@ export interface TestimonyResponse {
   id: number;
   name: string;
   content: string;
+  title: string;
   image: string | null;
   createdAt: Date;
   updatedAt: Date;
