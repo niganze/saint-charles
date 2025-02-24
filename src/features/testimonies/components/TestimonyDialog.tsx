@@ -51,7 +51,7 @@ export function TestimonyDialog({
         reset({
           name: testimony.name,
           content: testimony.content,
-          title: testimony.title,
+          title: testimony?.title || "Student",
         });
       } else {
         reset({
