@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { Quote, Star } from "lucide-react";
+import { Quote, Star, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
@@ -34,16 +34,27 @@ export function TestimonialsSection() {
   });
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const previousSlide = () => {
+    setCurrentIndex(
+      (prev) => (prev - 1 + testimonials.length) % testimonials.length
+    );
+  };
 
   useEffect(() => {
-    if (testimonials.length === 0) return;
+    if (testimonials.length === 0 || !isAutoPlaying) return;
 
     const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
+      nextSlide();
+    }, 8000); // Increased to 8 seconds
 
     return () => clearInterval(timer);
-  }, [testimonials.length]);
+  }, [testimonials.length, isAutoPlaying]);
 
   if (testimonials.length === 0) {
     return null;
@@ -104,6 +115,30 @@ export function TestimonialsSection() {
 
         <div className="mt-16 relative">
           <div className="relative max-w-4xl mx-auto">
+            {/* Navigation Buttons - Desktop */}
+            <div className="hidden md:block">
+              <button
+                onClick={() => {
+                  setIsAutoPlaying(false);
+                  previousSlide();
+                }}
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                aria-label="Previous testimony"
+              >
+                <ChevronLeft className="h-6 w-6 text-white" />
+              </button>
+              <button
+                onClick={() => {
+                  setIsAutoPlaying(false);
+                  nextSlide();
+                }}
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                aria-label="Next testimony"
+              >
+                <ChevronRight className="h-6 w-6 text-white" />
+              </button>
+            </div>
+
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentIndex}
@@ -153,7 +188,9 @@ export function TestimonialsSection() {
                       <div className="font-semibold text-white text-lg">
                         {testimonials[currentIndex].name}
                       </div>
-                      <div className="text-sm text-gray-400">Student</div>
+                      <div className="text-sm text-gray-400">
+                        {testimonials[currentIndex].title}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -161,16 +198,45 @@ export function TestimonialsSection() {
             </AnimatePresence>
           </div>
 
+          {/* Navigation Buttons - Mobile */}
+          <div className="md:hidden flex justify-center gap-4 mt-8">
+            <button
+              onClick={() => {
+                setIsAutoPlaying(false);
+                previousSlide();
+              }}
+              className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+              aria-label="Previous testimony"
+            >
+              <ChevronLeft className="h-6 w-6 text-white" />
+            </button>
+            <button
+              onClick={() => {
+                setIsAutoPlaying(false);
+                nextSlide();
+              }}
+              className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+              aria-label="Next testimony"
+            >
+              <ChevronRight className="h-6 w-6 text-white" />
+            </button>
+          </div>
+
+          {/* Dots Navigation */}
           <div className="mt-8 flex justify-center gap-2">
             {testimonials.map((_, index) => (
               <button
                 key={index}
-                onClick={() => setCurrentIndex(index)}
+                onClick={() => {
+                  setIsAutoPlaying(false);
+                  setCurrentIndex(index);
+                }}
                 className={`h-1.5 rounded-full transition-all duration-500 ${
                   index === currentIndex
                     ? "w-8 bg-sc-red"
                     : "w-2 bg-gray-700 hover:bg-gray-600"
                 }`}
+                aria-label={`Go to testimony ${index + 1}`}
               />
             ))}
           </div>

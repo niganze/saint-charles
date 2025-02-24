@@ -130,6 +130,7 @@ export default function TestimoniesPage() {
           <TableRow>
             <TableHead>Image</TableHead>
             <TableHead>Name</TableHead>
+            <TableHead>Title</TableHead>
             <TableHead>Content</TableHead>
             <TableHead>
               <span className="sr-only">Actions</span>
@@ -154,6 +155,7 @@ export default function TestimoniesPage() {
                 )}
               </TableCell>
               <TableCell>{testimony.name}</TableCell>
+              <TableCell>{testimony.title}</TableCell>
               <TableCell className="max-w-md">
                 <div className="line-clamp-2">{testimony.content}</div>
               </TableCell>

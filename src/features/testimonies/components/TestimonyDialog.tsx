@@ -40,6 +40,7 @@ export function TestimonyDialog({
     defaultValues: {
       name: "",
       content: "",
+      title: "Student",
     },
   });
 
@@ -50,11 +51,13 @@ export function TestimonyDialog({
         reset({
           name: testimony.name,
           content: testimony.content,
+          title: testimony.title,
         });
       } else {
         reset({
           name: "",
           content: "",
+          title: "Student",
         });
       }
     }
@@ -79,6 +82,7 @@ export function TestimonyDialog({
       const formData = new FormData();
       formData.append("name", data.name);
       formData.append("content", data.content);
+      formData.append("title", data.title);
 
       if (data.image?.[0]) {
         formData.append("image", data.image[0]);
@@ -108,6 +112,23 @@ export function TestimonyDialog({
                 {...register("name")}
                 error={errors.name?.message}
               />
+            </div>
+            <div className="grid gap-2">
+              <select
+                id="title"
+                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                {...register("title")}
+              >
+                <option value="Student">Student</option>
+                <option value="Teacher">Teacher</option>
+                <option value="Parent">Parent</option>
+                <option value="Professional">Professional</option>
+              </select>
+              {errors.title?.message && (
+                <p className="text-sm text-destructive">
+                  {errors.title.message}
+                </p>
+              )}
             </div>
             <div className="grid gap-2">
               <Textarea

@@ -32,6 +32,7 @@ model Testimony {
   name      String
   content   String   @db.Text
   image     String?
+  title     String   @default("Student")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

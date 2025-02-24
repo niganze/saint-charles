@@ -29,12 +29,14 @@ export async function PUT(
     const formData = await request.formData();
     const name = formData.get("name") as string;
     const content = formData.get("content") as string;
+    const title = formData.get("title") as string;
     const image = formData.get("image") as File | null;
 
     // Validate the data
     const validationResult = testimonySchema.safeParse({
       name,
       content,
+      title,
       image: image || undefined,
     });
 
@@ -57,6 +59,7 @@ export async function PUT(
       data: {
         name,
         content,
+        title,
         image: imageUrl,
       },
     });
