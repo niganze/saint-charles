@@ -60,18 +60,18 @@ export function RegistrationHero() {
               className="flex items-center justify-center gap-2 mb-6"
             >
               <div className="h-1 w-12 bg-sc-red rounded-full" />
-              <span className="text-sc-red font-medium">Register Now</span>
+              <span className="text-sc-red font-medium">Register</span>
               <div className="h-1 w-12 bg-sc-red rounded-full" />
             </motion.div>
 
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-              Start Your{" "}
-              <span className="text-sc-red">German Language Journey</span>
+              Enroll Now and{" "}
+              <span className="text-sc-red">Start Your Journey</span>
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              Take the first step towards mastering German by registering for
-              our comprehensive language courses. Choose your preferred level
-              and schedule to begin your learning journey.
+              Take the first step towards mastering German language by
+              registering for our comprehensive language courses. Choose your
+              preferred level and schedule to begin your learning journey.
             </p>
           </motion.div>
         </div>

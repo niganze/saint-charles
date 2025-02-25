@@ -11,7 +11,7 @@ const courses = [
     name: "Beginner",
     description:
       "Start your journey into German language with basic communication skills. Learn to introduce yourself, handle everyday situations, and understand simple conversations.",
-    duration: "3 months",
+    duration: "1.5 months",
     students: "20 per class",
     topics: [
       "Basic Grammar",
@@ -34,7 +34,7 @@ const courses = [
     name: "Elementary",
     description:
       "Build on your basics and learn to handle everyday situations. Express yourself in familiar contexts and understand frequently used expressions.",
-    duration: "3 months",
+    duration: "1.5 months",
     students: "20 per class",
     topics: [
       "Past Tense",
@@ -57,7 +57,7 @@ const courses = [
     name: "Intermediate",
     description:
       "Express yourself more fluently and handle most situations. Understand main points of complex texts and engage in spontaneous conversation.",
-    duration: "4 months",
+    duration: "1.5 months",
     students: "15 per class",
     topics: [
       "Complex Grammar",
@@ -80,7 +80,7 @@ const courses = [
     name: "Upper Intermediate",
     description:
       "Achieve professional working proficiency in German. Express yourself clearly on a wide range of subjects and understand technical discussions.",
-    duration: "4 months",
+    duration: "1.5 months",
     students: "15 per class",
     topics: [
       "Business German",
@@ -103,7 +103,7 @@ const courses = [
     name: "Advanced",
     description:
       "Master complex topics and express yourself with precision. Understand demanding texts and use language flexibly in social, academic, and professional contexts.",
-    duration: "6 months",
+    duration: "1.5 months",
     students: "12 per class",
     topics: [
       "Advanced Grammar",
@@ -126,7 +126,7 @@ const courses = [
     name: "Mastery",
     description:
       "Achieve near-native proficiency in all aspects of German. Understand everything you read or hear and express yourself spontaneously with precision.",
-    duration: "6 months",
+    duration: "1.5 months",
     students: "10 per class",
     topics: [
       "Creative Writing",
@@ -192,11 +192,11 @@ export function CoursesGrid() {
                     <div className="flex items-center gap-2 text-gray-900 font-medium mb-2">
                       <span>Key Topics</span>
                     </div>
-                    <ul className="grid grid-cols-2 gap-2">
+                    <ul className="grid  gap-2">
                       {course.topics.slice(0, 4).map((topic) => (
                         <li
                           key={topic}
-                          className="flex items-start gap-2 text-sm"
+                          className="flex items-start gap-2 text-md"
                         >
                           <GraduationCap className="h-4 w-4 text-sc-yellow shrink-0 mt-0.5" />
                           <span className="text-gray-600">{topic}</span>
@@ -209,11 +209,11 @@ export function CoursesGrid() {
                     <div className="flex items-center gap-2 text-gray-900 font-medium mb-2">
                       <span>Features</span>
                     </div>
-                    <ul className="grid grid-cols-2 gap-2">
+                    <ul className="grid gap-2">
                       {course.features.map((feature) => (
                         <li
                           key={feature}
-                          className="flex items-start gap-2 text-sm"
+                          className="flex items-start gap-2 text-md"
                         >
                           <GraduationCap className="h-4 w-4 text-sc-yellow shrink-0 mt-0.5" />
                           <span className="text-gray-600">{feature}</span>

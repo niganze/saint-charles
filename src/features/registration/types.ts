@@ -1,13 +1,12 @@
 import { z } from "zod";
 
-const courseOptions = ["A1", "A2", "B1", "B2", "C1", "C2"] as const;
+const courseOptions = ["A1", "A2", "B1", "B2"] as const;
 const scheduleOptions = [
   "08:00–11:00 (Morning Session)",
   "11:10–14:10 (Early Afternoon)",
   "14:20–17:20 (Late Afternoon)",
   "17:30–20:30 (Evening Session)",
-  "08:30–15:30 (Weekend - Saturday)",
-  "08:30–15:30 (Weekend - Sunday)",
+  "08:30–15:30 (Weekend - Saturday & Sunday)",
 ] as const;
 
 export const registrationSchema = z.object({

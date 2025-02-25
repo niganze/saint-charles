@@ -20,7 +20,7 @@ export const Logo = ({
         className="relative"
       >
         {/* Mobile Logo */}
-        {!isFooter && (
+        {/* {!isFooter && (
           <Image
             src={"/logos/black-red.png"}
             alt="Saint Charles Logo"
@@ -29,15 +29,13 @@ export const Logo = ({
             className="w-auto object-contain xl:hidden"
             priority
           />
-        )}
+        )} */}
         <Image
           src={isFooter ? "/logos/white-red-x.png" : "/logos/black-red-x.png"}
           alt="Saint Charles Logo"
           width={isFooter ? 140 : 130}
           height={isFooter ? 50 : 40}
-          className={` ${
-            !isFooter ? "max-xl:hidden" : ""
-          } w-auto object-contain"`}
+          className={` ${!isFooter ? "" : ""} w-auto object-contain"`}
           priority
         />
       </motion.div>
