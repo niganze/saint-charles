@@ -1,14 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  ArrowRight,
-  BookOpen,
-  Clock,
-  GraduationCap,
-  Users,
-} from "lucide-react";
-import Link from "next/link";
+import { Clock, GraduationCap } from "lucide-react";
 
 const courses = [
   {
@@ -16,7 +9,7 @@ const courses = [
     name: "Beginner",
     description:
       "Start your journey into German language with basic communication skills.",
-    duration: "3 months",
+    duration: "1.5 months",
     students: "20 per class",
     topics: [
       "Basic Grammar",
@@ -30,7 +23,7 @@ const courses = [
     name: "Elementary",
     description:
       "Build on your basics and learn to handle everyday situations.",
-    duration: "3 months",
+    duration: "1.5 months",
     students: "20 per class",
     topics: [
       "Past Tense",
@@ -43,7 +36,7 @@ const courses = [
     level: "B1",
     name: "Intermediate",
     description: "Express yourself more fluently and handle most situations.",
-    duration: "4 months",
+    duration: "1.5 months",
     students: "15 per class",
     topics: [
       "Complex Grammar",
@@ -56,7 +49,7 @@ const courses = [
     level: "B2",
     name: "Upper Intermediate",
     description: "Achieve professional working proficiency in German.",
-    duration: "4 months",
+    duration: "1.5 months",
     students: "15 per class",
     topics: [
       "Business German",

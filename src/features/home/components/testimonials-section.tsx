@@ -108,7 +108,7 @@ export function TestimonialsSection() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="mt-4 text-lg leading-8 text-gray-300 max-w-2xl mx-auto"
           >
-            Hear from our successful students who achieved their German language
+            Hear from some of our students among of many who achieved their
             goals with us.
           </motion.p>
         </div>
@@ -170,7 +170,7 @@ export function TestimonialsSection() {
                 <div className="relative rounded-2xl bg-white/5 backdrop-blur-sm p-8 md:p-12 ring-1 ring-white/10">
                   <Quote className="absolute -top-4 -left-4 h-8 w-8 text-sc-yellow/20" />
                   <Quote className="absolute -bottom-4 -right-4 h-8 w-8 text-sc-yellow/20 rotate-180" />
-                  <blockquote className="text-lg font-medium leading-8 text-gray-300 sm:text-md sm:leading-9 text-center">
+                  <blockquote className="text-xl font-medium leading-8 text-gray-300 sm:text-md sm:leading-9 text-center">
                     {testimonials[currentIndex].content}
                   </blockquote>
                   <div className="mt-8 flex flex-col items-center gap-4">
@@ -185,10 +185,10 @@ export function TestimonialsSection() {
                       </div>
                     )}
                     <div className="text-center">
-                      <div className="font-semibold text-white text-lg">
+                      <div className="font-semibold text-white text-xl">
                         {testimonials[currentIndex].name}
                       </div>
-                      <div className="text-sm text-gray-400">
+                      <div className="text-gray-400">
                         {testimonials[currentIndex].title}
                       </div>
                     </div>

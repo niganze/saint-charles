@@ -15,7 +15,15 @@ import {
 } from "@/features/registration/types";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
-import { Mail, Phone, BookOpen, CheckCircle2, Loader } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  BookOpen,
+  CheckCircle2,
+  Loader,
+  ArrowRight,
+} from "lucide-react";
+import Link from "next/link";
 
 export function RegistrationSection() {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -90,7 +98,7 @@ export function RegistrationSection() {
                       Course Levels
                     </h3>
                     <p className="text-gray-600">
-                      From A1 to C2 - All proficiency levels
+                      From A1 to B2 - All proficiency levels
                     </p>
                   </div>
                 </div>
@@ -145,11 +153,16 @@ export function RegistrationSection() {
                       Thank you for registering with Saint Charles K. LTD. We
                       will review your application and get back to you soon.
                     </p>
-                    <Button
-                      variant="outline"
-                      onClick={() => setIsSubmitted(false)}
-                    >
-                      Register Another Student
+                    <Button variant="outline" asChild className="group">
+                      <Link
+                        href="https://drive.google.com/drive/folders/1sUZwHvRyz7dahv9GnMVA-4UNq_TSYDzH?usp=drive_link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2"
+                      >
+                        Access Learning Resources
+                        <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      </Link>
                     </Button>
                   </motion.div>
                 ) : (

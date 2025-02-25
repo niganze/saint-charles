@@ -60,7 +60,9 @@ export function CoursesHero() {
               className="flex items-center justify-center gap-2 mb-6"
             >
               <div className="h-1 w-12 bg-sc-red rounded-full" />
-              <span className="text-sc-red font-medium">German Courses</span>
+              <span className="text-sc-red font-medium">
+                German Language Courses
+              </span>
               <div className="h-1 w-12 bg-sc-red rounded-full" />
             </motion.div>
 
@@ -86,7 +88,7 @@ export function CoursesHero() {
                   <GraduationCap className="h-6 w-6 text-sc-red" />
                 </div>
                 <p className="mt-2 text-2xl font-bold text-gray-900">6</p>
-                <p className="text-sm text-gray-500">Course Levels</p>
+                <p className="text-lg text-gray-500">Course Levels</p>
               </motion.div>
 
               <motion.div
@@ -98,8 +100,8 @@ export function CoursesHero() {
                 <div className="p-2 rounded-lg bg-sc-yellow/10">
                   <Clock className="h-6 w-6 text-sc-yellow" />
                 </div>
-                <p className="mt-2 text-2xl font-bold text-gray-900">3-6</p>
-                <p className="text-sm text-gray-500">Months/Level</p>
+                <p className="mt-2 text-2xl font-bold text-gray-900">1.5</p>
+                <p className="text-lg text-gray-500">Months/Level</p>
               </motion.div>
 
               <motion.div
@@ -112,7 +114,7 @@ export function CoursesHero() {
                   <Users className="h-6 w-6 text-sc-red" />
                 </div>
                 <p className="mt-2 text-2xl font-bold text-gray-900">15</p>
-                <p className="text-sm text-gray-500">Max Students</p>
+                <p className="text-lg text-gray-500">Max Students</p>
               </motion.div>
 
               <motion.div
@@ -125,7 +127,7 @@ export function CoursesHero() {
                   <Star className="h-6 w-6 text-sc-yellow" />
                 </div>
                 <p className="mt-2 text-2xl font-bold text-gray-900">95%</p>
-                <p className="text-sm text-gray-500">Pass Rate</p>
+                <p className="text-lg text-gray-500">Pass Rate</p>
               </motion.div>
             </div>
           </motion.div>

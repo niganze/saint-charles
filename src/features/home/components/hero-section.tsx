@@ -42,17 +42,17 @@ export function HeroSection() {
             >
               <div className="h-1 w-12 bg-sc-red rounded-full" />
               <span className="text-sc-red font-medium">
-                German Language School in Kigali
+                Welcome to Saint Charles K.
               </span>
             </motion.div>
 
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
-              Master German with{" "}
-              <span className="text-sc-red">Confidence!</span>
+            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+              Master German language{" "}
+              <span className="text-sc-red">& Unlock Opportunities!</span>
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">
               Since 2021, we've helped over 100 students achieve their dreams in
-              Germany. Join our intensive German courses and unlock your future
+              Germany. Join our German language courses and unlock your future
               opportunities.
             </p>
 
@@ -80,7 +80,7 @@ export function HeroSection() {
                   <BookOpen className="h-6 w-6 text-sc-yellow" />
                 </div>
                 <p className="mt-2 text-2xl font-bold text-gray-900">A1-C2</p>
-                <p className="text-sm text-gray-500">All Levels</p>
+                <p className=" text-gray-500">All Levels</p>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -92,7 +92,7 @@ export function HeroSection() {
                   <Users className="h-6 w-6 text-sc-yellow" />
                 </div>
                 <p className="mt-2 text-2xl font-bold text-gray-900">100+</p>
-                <p className="text-sm text-gray-500">Success Stories</p>
+                <p className=" text-gray-500">Success Stories</p>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -104,7 +104,7 @@ export function HeroSection() {
                   <Target className="h-6 w-6 text-sc-yellow" />
                 </div>
                 <p className="mt-2 text-2xl font-bold text-gray-900">95%</p>
-                <p className="text-sm text-gray-500">Pass Rate</p>
+                <p className=" text-gray-500">Pass Rate</p>
               </motion.div>
             </div>
           </motion.div>
@@ -138,7 +138,7 @@ export function HeroSection() {
                 >
                   <div className="text-center">
                     <div className="font-bold text-sc-red text-lg">4.9</div>
-                    <div className="text-xs text-gray-600">Rating</div>
+                    <div className="text-gray-600">Rating</div>
                   </div>
                 </motion.div>
                 <motion.div
@@ -154,7 +154,7 @@ export function HeroSection() {
                 >
                   <div className="text-center">
                     <div className="text-2xl font-bold text-sc-yellow">6</div>
-                    <div className="text-xs text-gray-600">Levels</div>
+                    <div className=" text-gray-600">Levels</div>
                   </div>
                 </motion.div>
               </div>

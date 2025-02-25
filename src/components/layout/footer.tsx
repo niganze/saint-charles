@@ -1,6 +1,16 @@
 "use client";
 
-import { ArrowRight, Calendar, Mail, MapPin, Phone } from "lucide-react";
+import {
+  ArrowRight,
+  Calendar,
+  Mail,
+  MapPin,
+  Phone,
+  Facebook,
+  Instagram,
+  Twitter,
+  Linkedin,
+} from "lucide-react";
 import Link from "next/link";
 import { Logo } from "../ui/logo";
 import { motion } from "framer-motion";
@@ -45,7 +55,7 @@ export function Footer() {
 
       <div className="container relative py-20 overflow-visible">
         {/* CTA Section */}
-        <div className="absolute z-20 -top-24 left-0 bg-white w-full rounded-lg shadow-2xl border border-gray-100">
+        <div className="absolute z-20 -top-32 lg:-top-24  left-0 bg-white w-full rounded-lg shadow-2xl border border-gray-100">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -53,15 +63,30 @@ export function Footer() {
             transition={{ duration: 0.5 }}
             className="p-10 md:py-16 md:px-20"
           >
-            <div className="flex justify-between gap-8 md:gap-4 flex-col md:flex-row md:items-center">
+            <div className="flex justify-between gap-8 lg:gap-4 flex-col lg:flex-row lg:items-center">
               <div>
                 <h2 className="font-semibold text-xl text-sc-black">
                   Ready to start your journey?
                 </h2>
-                <p>Join a class now and start mastering German!</p>
+                <p>Join a class now and start mastering German language!</p>
               </div>
 
-              <div className="">
+              <div className="flex gap-4">
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="group relative overflow-hidden"
+                >
+                  <Link
+                    href="https://drive.google.com/drive/folders/1sUZwHvRyz7dahv9GnMVA-4UNq_TSYDzH?usp=drive_link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2"
+                  >
+                    Resources
+                  </Link>
+                </Button>
                 <Button
                   asChild
                   size="lg"
@@ -96,7 +121,7 @@ export function Footer() {
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300 }}
-                className="relative sm:col-span-2 overflow-hidden rounded-xl bg-white/5 backdrop-blur-sm p-4 ring-1 ring-white/10 hover:ring-sc-red/20 transition-all duration-300"
+                className="relative  overflow-hidden rounded-xl bg-white/5 backdrop-blur-sm p-4 ring-1 ring-white/10 hover:ring-sc-red/20 transition-all duration-300"
               >
                 <div className="flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-sc-red/10">
@@ -106,9 +131,9 @@ export function Footer() {
                     <h3 className="font-medium text-white">Call Us</h3>
                     <Link
                       href="tel:+250793763948"
-                      className="text-sm text-sc-red hover:text-sc-red/80 transition-colors"
+                      className="text-[.9rem] text-sc-red hover:text-sc-red/80 transition-colors"
                     >
-                      +250 793 763 948 / +250 781 061 385
+                      +250 793 763 948
                     </Link>
                   </div>
                 </div>
@@ -138,15 +163,15 @@ export function Footer() {
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300 }}
-                className="relative overflow-hidden rounded-xl bg-white/5 backdrop-blur-sm p-4 ring-1 ring-white/10 hover:ring-sc-red/20 transition-all duration-300"
+                className="relative sm:col-span-2 overflow-hidden rounded-xl bg-white/5 backdrop-blur-sm p-4 ring-1 ring-white/10 hover:ring-sc-red/20 transition-all duration-300"
               >
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-sc-red/10">
+                  <div className="flex h-10 min-w-10 items-center justify-center rounded-lg bg-sc-red/10">
                     <MapPin className="h-5 w-5 text-sc-red" />
                   </div>
                   <div>
                     <h3 className="font-medium text-white">Visit Us</h3>
-                    <p className="text-sm">
+                    <p className="text-[.9rem]">
                       Centre Saint Paul, Nyarugenge, Kigali, Rwanda (KN 32 St.)
                     </p>
                   </div>
@@ -244,8 +269,50 @@ export function Footer() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="mt-16 pt-8 border-t border-gray-800/50"
         >
-          <div className="flex justify-center items-center gap-4">
-            <p className="text-sm text-center">
+          <div className="flex justify-between items-center">
+            <div className="flex items-center gap-4">
+              <motion.a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="p-2 rounded-full bg-white/5 hover:bg-white/10 transition-colors"
+              >
+                <Facebook className="h-5 w-5 text-gray-400 hover:text-sc-red transition-colors" />
+              </motion.a>
+              <motion.a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="p-2 rounded-full bg-white/5 hover:bg-white/10 transition-colors"
+              >
+                <Instagram className="h-5 w-5 text-gray-400 hover:text-sc-yellow transition-colors" />
+              </motion.a>
+              <motion.a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="p-2 rounded-full bg-white/5 hover:bg-white/10 transition-colors"
+              >
+                <Twitter className="h-5 w-5 text-gray-400 hover:text-sc-red transition-colors" />
+              </motion.a>
+              <motion.a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="p-2 rounded-full bg-white/5 hover:bg-white/10 transition-colors"
+              >
+                <Linkedin className="h-5 w-5 text-gray-400 hover:text-sc-yellow transition-colors" />
+              </motion.a>
+            </div>
+            <p className="text-sm">
               © {new Date().getFullYear()} Saint Charles K. LTD. All rights
               reserved.
             </p>
