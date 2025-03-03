@@ -122,7 +122,7 @@ export function AboutHero() {
               </div>
               <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
                 Empowering Dreams Through{" "}
-                <span className="text-sc-red">German Excellence</span>
+                <span className="text-sc-red">German Language Excellence</span>
               </h1>
               <p className="mt-6 text-lg leading-8 text-gray-600">
                 Since 2021, we've been more than just a language school. We're a
