@@ -24,10 +24,7 @@ const schedules = [
   {
     title: "Weekend Classes",
     icon: Sun,
-    times: [
-      { time: "08:30–15:30", label: "Saturday Full Day" },
-      { time: "08:30–15:30", label: "Sunday Full Day" },
-    ],
+    times: [{ time: "08:30–15:30", label: "Saturday & Sunday Full Day" }],
   },
 ];
 
@@ -140,7 +137,7 @@ export function ScheduleSection() {
                           <p className="font-medium text-base text-gray-900">
                             {time.time}
                           </p>
-                          {/* <p className="text-sm text-gray-600">{time.label}</p> */}
+                          <p className="text-sm text-gray-600">{time.label}</p>
                         </div>
                       </motion.div>
                     ))}
