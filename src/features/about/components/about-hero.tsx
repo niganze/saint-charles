@@ -127,7 +127,7 @@ export function AboutHero() {
               <p className="mt-6 text-lg leading-8 text-gray-600">
                 Since 2021, we've been more than just a language school. We're a
                 gateway to opportunities, helping students master German while
-                preparing them for success in Germany. Our commitment to
+                preparing them for success in German language. Our commitment to
                 excellence and student success has made us Rwanda's premier
                 German language institution.
               </p>
