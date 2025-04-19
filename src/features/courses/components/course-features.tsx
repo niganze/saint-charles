@@ -22,7 +22,7 @@ const features = [
   {
     name: "Small Class Sizes",
     description:
-      "Maximum of 15 students per class ensures personalized attention and optimal learning.",
+      "Maximum of 20 students per class ensures personalized attention and optimal learning.",
     icon: Target,
     color: "text-sc-yellow",
     bg: "bg-sc-yellow/10",

@@ -22,7 +22,7 @@ const navigation = [
       { name: "C2 - Mastery", href: "/courses#c2" },
     ],
   },
-  { name: "Blog", href: "/blog" },
+  { name: "Gallery&News", href: "/blog" },
 ];
 
 export function Header() {

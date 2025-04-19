@@ -37,7 +37,7 @@ const faqs = [
   {
     question: "What is your class size policy?",
     answer:
-      "We maintain small class sizes with a maximum of 15 students per class to ensure personalized attention and optimal learning conditions.",
+      "We maintain small class sizes with a maximum of 20 students per class to ensure personalized attention and optimal learning conditions.",
   },
 ];
 

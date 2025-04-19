@@ -8,7 +8,7 @@ import {
   GraduationCap,
   Users,
   Clock,
-  Star,
+  Calendar ,
   Lightbulb,
 } from "lucide-react";
 import Image from "next/image";
@@ -66,7 +66,7 @@ export function AboutHero() {
             >
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
                 <Image
-                  src="/student-hapilly-reading.jpeg"
+                  src="/students-photo.jpeg"
                   alt="Happy student reading"
                   fill
                   className="object-cover"
@@ -100,11 +100,11 @@ export function AboutHero() {
               >
                 <div className="flex items-center gap-3">
                   <div className="p-2 rounded-lg bg-sc-yellow/10">
-                    <Star className="h-5 w-5 text-sc-yellow" />
+                    <Calendar  className="h-5 w-5 text-sc-yellow" />
                   </div>
                   <div>
-                    <p className="text-lg font-bold text-gray-900">4.9</p>
-                    <p className="text-sm text-gray-600">Rating</p>
+                    <p className="text-lg font-bold text-gray-900">5+</p>
+                    <p className="text-sm text-gray-600">Years</p>
                   </div>
                 </div>
               </motion.div>

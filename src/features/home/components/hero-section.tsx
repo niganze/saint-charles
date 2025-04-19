@@ -52,8 +52,7 @@ export function HeroSection() {
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">
               We've helped hundreds of students to achieve their goals in German
-              language and over hundred of them are now in Germany. Join our
-              German language courses and unlock your future opportunities.
+              language and over hundred of them are now in Germany.
             </p>
 
             <div className="mt-8 flex gap-4">

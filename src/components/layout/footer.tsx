@@ -128,14 +128,20 @@ export function Footer() {
                     <Phone className="h-5 w-5 text-sc-red" />
                   </div>
                   <div>
-                    <h3 className="font-medium text-white">Call Us</h3>
-                    <Link
-                      href="tel:+250793763948"
-                      className="text-[.9rem] text-sc-red hover:text-sc-red/80 transition-colors"
-                    >
-                      +250 793 763 948
-                    </Link>
-                  </div>
+  <h3 className="font-medium text-white">Call Us</h3>
+  <Link
+    href="tel:+250793763948"
+    className="text-[.9rem] text-sc-red hover:text-sc-red/80 transition-colors block"
+  >
+    +250 793 763 948
+  </Link>
+  <Link
+    href="tel:+250781061385"
+    className="text-[.9rem] text-sc-red hover:text-sc-red/80 transition-colors"
+  >
+    +250 781 061 385
+  </Link>
+</div>
                 </div>
               </motion.div>
 
@@ -272,7 +278,7 @@ export function Footer() {
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-4">
               <motion.a
-                href="https://facebook.com"
+                href="https://www.facebook.com/share/15Bh9MDzyL/"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1 }}
@@ -282,7 +288,7 @@ export function Footer() {
                 <Facebook className="h-5 w-5 text-gray-400 hover:text-sc-red transition-colors" />
               </motion.a>
               <motion.a
-                href="https://instagram.com"
+                href="https://www.instagram.com/saint_charlesk1/"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1 }}
