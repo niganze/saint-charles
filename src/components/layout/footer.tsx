@@ -128,20 +128,20 @@ export function Footer() {
                     <Phone className="h-5 w-5 text-sc-red" />
                   </div>
                   <div>
-  <h3 className="font-medium text-white">Call Us</h3>
-  <Link
-    href="tel:+250793763948"
-    className="text-[.9rem] text-sc-red hover:text-sc-red/80 transition-colors block"
-  >
-    +250 793 763 948
-  </Link>
-  <Link
-    href="tel:+250781061385"
-    className="text-[.9rem] text-sc-red hover:text-sc-red/80 transition-colors"
-  >
-    +250 781 061 385
-  </Link>
-</div>
+                    <h3 className="font-medium text-white">Call Us</h3>
+                    <Link
+                      href="tel:+250793763948"
+                      className="text-[.9rem] text-sc-red hover:text-sc-red/80 transition-colors block"
+                    >
+                      +250 793 763 948
+                    </Link>
+                    <Link
+                      href="tel:+250781061385"
+                      className="text-[.9rem] text-sc-red hover:text-sc-red/80 transition-colors"
+                    >
+                      +250 781 061 385
+                    </Link>
+                  </div>
                 </div>
               </motion.div>
 
@@ -298,7 +298,7 @@ export function Footer() {
                 <Instagram className="h-5 w-5 text-gray-400 hover:text-sc-yellow transition-colors" />
               </motion.a>
               <motion.a
-                href="https://twitter.com"
+                href="https://x.com/saintcharles_k"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1 }}
@@ -308,7 +308,7 @@ export function Footer() {
                 <Twitter className="h-5 w-5 text-gray-400 hover:text-sc-red transition-colors" />
               </motion.a>
               <motion.a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/company/saintcharlesk/"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1 }}
@@ -317,6 +317,9 @@ export function Footer() {
               >
                 <Linkedin className="h-5 w-5 text-gray-400 hover:text-sc-yellow transition-colors" />
               </motion.a>
+              <p className="font-sans text-sm font-medium tracking-wide  bg-gradient-to-r from-yellow-400 to-red-500 bg-clip-text text-transparent px-4 py-2 border-l-2 border-yellow-400 ml-2  animate-pulse">
+                Designed in the House of Kemmy
+              </p>
             </div>
             <p className="text-sm">
               © {new Date().getFullYear()} Saint Charles K. LTD. All rights

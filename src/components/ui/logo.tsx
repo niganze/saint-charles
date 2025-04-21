@@ -33,8 +33,8 @@ export const Logo = ({
         <Image
           src={isFooter ? "/logos/white-red-x.png" : "/logos/black-red-x.png"}
           alt="Saint Charles Logo"
-          width={isFooter ? 140 : 130}
-          height={isFooter ? 50 : 40}
+          width={isFooter ? 200 : 190}  // Increased from 140/130 to 180/170
+          height={isFooter ? 80 : 80} // Increased from 50/40 to 65/55
           className={` ${!isFooter ? "" : ""} w-auto object-contain"`}
           priority
         />

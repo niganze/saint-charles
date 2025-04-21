@@ -1,10 +1,11 @@
 import nodemailer from "nodemailer";
 
 const transporter = nodemailer.createTransport({
-  host: process.env.MAILER_SERVICE,
-  port: parseInt(process.env.MAILER_PORT!),
+  host: process.env.MAILER_SERVICE || 'saintcharlesk.com',
+  port: parseInt(process.env.MAILER_PORT || '465'),
+  secure: true,  // Add this line since you're using port 465
   auth: {
-    user: process.env.MAILER_USERNAME,
+    user: process.env.MAILER_USERNAME || 'no-reply@saintcharlesk.com',
     pass: process.env.MAILER_PASSWORD,
   },
 });
@@ -15,19 +16,35 @@ interface SendMailOptions {
   html: string;
 }
 
+// export async function sendMail({ to, subject, html }: SendMailOptions) {
+//   try {
+//     transporter
+//       .sendMail({
+//         from: `${process.env.MAILER_NAME}<${process.env.MAILER_USERNAME}>`,
+//         to,
+//         subject,
+//         html,
+//       })
+//       .then(() => {})
+//       .catch((error) => {
+//         console.error("Failed to send email:", error);
+//       });
+//   } catch (error) {
+//     console.error("Failed to send email:", error);
+//     throw new Error("Failed to send email");
+//   }
+// }
+
 export async function sendMail({ to, subject, html }: SendMailOptions) {
   try {
-    transporter
-      .sendMail({
-        from: `${process.env.MAILER_NAME}<${process.env.MAILER_USERNAME}>`,
-        to,
-        subject,
-        html,
-      })
-      .then(() => {})
-      .catch((error) => {
-        console.error("Failed to send email:", error);
-      });
+    // Use await instead of then/catch chain for cleaner error handling
+    await transporter.sendMail({
+      from: `${process.env.MAILER_NAME}<${process.env.MAILER_USERNAME}>`,
+      to,
+      subject,
+      html,
+    });
+    return true;
   } catch (error) {
     console.error("Failed to send email:", error);
     throw new Error("Failed to send email");

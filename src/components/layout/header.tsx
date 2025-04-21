@@ -22,7 +22,7 @@ const navigation = [
       { name: "C2 - Mastery", href: "/courses#c2" },
     ],
   },
-  { name: "Gallery&News", href: "/blog" },
+  { name: "Gallery & News", href: "/blog" },
 ];
 
 export function Header() {
@@ -49,19 +49,19 @@ export function Header() {
         }`}
       >
         <nav className="container flex items-center justify-between">
-          <div className="bg-red-500">
-            <div className="bg-white">
-              <Logo />
+          <div className="bg-red-500 ">
+            <div className="bg-white max-h-full w-full md:w-96">
+              <Logo variant="default" />
             </div>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex lg:items-center lg:gap-8">
+          <div className="hidden lg:flex lg:items-center lg:gap-6">
             {navigation.map((item) => (
               <div key={item.name} className="relative group">
                 <Link
                   href={item.href}
-                  className="font-medium text-gray-700 hover:text-sc-red transition-colors relative group"
+                  className="font-medium text-gray-700 hover:text-sc-red transition-colors relative group whitespace-nowrap"
                 >
                   {item.name}
                   <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-sc-red group-hover:w-full transition-all duration-300" />
