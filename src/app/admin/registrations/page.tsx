@@ -50,7 +50,7 @@ async function getRegistrations(
     params.append("search", search);
   }
 
-  const response = await fetch(`/api/register?${params.toString()}`);
+  const response = await fetch(`/api/register?${params.toString()}`,{next:{revalidate:60}});
   if (!response.ok) {
     throw new Error("Failed to fetch registrations");
   }

@@ -17,7 +17,7 @@ interface Blog {
 }
 
 async function getBlogs(): Promise<Blog[]> {
-  const response = await fetch("/api/content");
+  const response = await fetch ("/api/content",{next:{revalidate:60}});
   const data = await response.json();
   return data.blogs;
 }

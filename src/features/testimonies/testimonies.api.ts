@@ -8,8 +8,8 @@ export interface TestimonyFormData {
 
 export const getTestimonies = async (): Promise<TestimonyResponse[]> => {
   const response = await fetch("/api/testimonies", {
-    method: "GET",
-  });
+    next:{revalidate:60}, 
+});
   if (!response.ok) throw new Error("Failed to fetch testimonies");
   return response.json();
 };

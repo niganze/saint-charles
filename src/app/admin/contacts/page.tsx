@@ -41,7 +41,7 @@ async function getContacts(
     params.append("search", search);
   }
 
-  const response = await fetch(`/api/contact?${params.toString()}`);
+  const response = await fetch(`/api/contact?${params.toString()}`,{next:{revalidate:60}});
   if (!response.ok) {
     throw new Error("Failed to fetch contacts");
   }
