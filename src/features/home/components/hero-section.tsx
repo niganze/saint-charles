@@ -136,8 +136,8 @@ export function HeroSection() {
                   className="absolute -right-8 -top-8 flex h-24 w-24 items-center justify-center rounded-2xl bg-white/90 backdrop-blur-sm shadow-lg p-4"
                 >
                   <div className="text-center">
-                    <div className="font-bold text-sc-red text-lg">4.9</div>
-                    <div className="text-gray-600">Rating</div>
+                    <div className="font-bold text-sc-red text-lg">5+</div>
+                    <div className="text-gray-600">Years</div>
                   </div>
                 </motion.div>
                 <motion.div
