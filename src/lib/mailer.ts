@@ -1,14 +1,17 @@
-import nodemailer from "nodemailer";
+// import nodemailer from "nodemailer";
+import { Resend } from 'resend';
 
-const transporter = nodemailer.createTransport({
-  host: process.env.MAILER_HOST ,
-  port: parseInt(process.env.MAILER_PORT || '587'),
-  secure: process.env.SMTP_SECURE === 'true ',  // Add this line since you're using port 465
-  auth: {
-    user: process.env.MAILER_USERNAME || 'no-reply@saintcharlesk.com',
-    pass: process.env.MAILER_PASSWORD,
-  },
-});
+// const transporter = nodemailer.createTransport({
+//   host: process.env.MAILER_HOST ,
+//   port: parseInt(process.env.MAILER_PORT || '465'),
+//   secure: process.env.SMTP_SECURE === 'true ',  // Add this line since you're using port 465
+//   auth: {
+//     user: process.env.MAILER_USERNAME || 'no-reply@saintcharlesk.com',
+//     pass: process.env.MAILER_PASSWORD,
+//   },
+// });
+
+const resend = new Resend(process.env.RESEND_KEY);
 
 interface SendMailOptions {
   to: string;
@@ -38,7 +41,14 @@ interface SendMailOptions {
 export async function sendMail({ to, subject, html }: SendMailOptions) {
   try {
     // Use await instead of then/catch chain for cleaner error handling
-    await transporter.sendMail({
+    // await transporter.sendMail({
+    //   from: `${process.env.MAILER_NAME}<${process.env.MAILER_USERNAME}>`,
+    //   to,
+    //   subject,
+    //   html,
+    // });
+
+    await resend.emails.send({
       from: `${process.env.MAILER_NAME}<${process.env.MAILER_USERNAME}>`,
       to,
       subject,

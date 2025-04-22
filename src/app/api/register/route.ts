@@ -28,6 +28,18 @@ export async function POST(request: Request) {
       subject: "New Course Registration",
       html,
     });
+    
+    // Send to the user (optional, with a different message)
+await sendMail({
+  to: validationResult.data.email,
+  subject: "Thank you for registering with Saint Charles K. Ltd",
+  html: `
+    <h2>Hi ${validationResult.data.name},</h2>
+    <p>Thank you for registering for our course: <strong>${validationResult.data.preferredCourse}</strong>.</p>
+    <p>We have received your details and will get in touch with you shortly.</p>
+    <p>Regards,<br/>Saint Charles K. Ltd</p>
+  `,
+});
 
     return NextResponse.json(registration);
   } catch (error) {
