@@ -1,9 +1,9 @@
 import nodemailer from "nodemailer";
 
 const transporter = nodemailer.createTransport({
-  host: process.env.MAILER_SERVICE || 'saintcharlesk.com',
-  port: parseInt(process.env.MAILER_PORT || '465'),
-  secure: true,  // Add this line since you're using port 465
+  host: process.env.MAILER_HOST ,
+  port: parseInt(process.env.MAILER_PORT || '587'),
+  secure: process.env.SMTP_SECURE === 'true ',  // Add this line since you're using port 465
   auth: {
     user: process.env.MAILER_USERNAME || 'no-reply@saintcharlesk.com',
     pass: process.env.MAILER_PASSWORD,
