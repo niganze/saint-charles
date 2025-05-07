@@ -14,7 +14,7 @@ import { Resend } from 'resend';
 const resend = new Resend(process.env.RESEND_KEY);
 
 interface SendMailOptions {
-  to: string;
+  to: string | string[];
   subject: string;
   html: string;
 }
@@ -50,7 +50,7 @@ export async function sendMail({ to, subject, html }: SendMailOptions) {
 
     await resend.emails.send({
       from: `${process.env.MAILER_NAME}<${process.env.MAILER_USERNAME}>`,
-      to,
+      to: Array.isArray(to) ? to : [to],
       subject,
       html,
     });

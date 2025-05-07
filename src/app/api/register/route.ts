@@ -23,11 +23,20 @@ export async function POST(request: Request) {
 
     // Send notification email
     const html = generateRegistrationEmail(validationResult.data);
+    // await sendMail({
+    //   to: process.env.NOTIFICATION_EMAIL!,
+    //   subject: "New Course Registration",
+    //   html,
+    // });
+
     await sendMail({
-      to: process.env.NOTIFICATION_EMAIL!,
-      subject: "New Course Registration",
+      to: [process.env.NOTIFICATION_EMAIL!, 'jtwizerimana2050@gmail.com'],
+      subject: 'New Registration Received',
       html,
     });
+    
+    
+    
     
     // Send to the user (optional, with a different message)
 await sendMail({
